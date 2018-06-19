@@ -1,6 +1,6 @@
 package br.edu.ifb.bd2.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Faltas_justificadas {
 	private Date data_falta;

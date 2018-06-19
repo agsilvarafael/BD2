@@ -1,7 +1,7 @@
 package br.edu.ifb.bd2.model;
 
+import java.sql.Date;
 import java.sql.Time;
-import java.util.Date;
 
 public class Frequencia {
 	private Date data_freq;
