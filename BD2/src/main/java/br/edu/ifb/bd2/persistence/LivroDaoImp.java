@@ -15,18 +15,18 @@ public class LivroDaoImp implements IDAO{
 
 	public String save(Object obj) {
 		Livro l = (Livro) obj;
-		String sql = "insert into livros(isbn, título, autor, preco_custo, preco_venda, estoque_minimo, qtd_estoque,"
+		String sql = "insert into livros(isbn, titulo, autor, precoCusto, precoVenda, estoqueMinimo, qtdEstoque,"
 				+ "codigo_prateleira, cnpj_fornecedor) values(?,?,?,?,?,?,?,?,?)";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, l.getIsbn());
-			pst.setString(2, l.getTítulo());
+			pst.setString(2, l.getTitulo());
 			pst.setString(3, l.getAutor());
-			pst.setFloat(4, l.getPreco_custo());
-			pst.setFloat(5, l.getPreco_venda());
-			pst.setInt(6, l.getEstoque_minimo());
-			pst.setInt(7, l.getQtd_estoque());
+			pst.setFloat(4, l.getPrecoCusto());
+			pst.setFloat(5, l.getPrecoVenda());
+			pst.setInt(6, l.getEstoqueMinimo());
+			pst.setInt(7, l.getQtdEstoque());
 			pst.setInt(8, l.getPrateleira().getCodigo_prateleira());
 			pst.setString(9, l.getFornecedor().getCnpj());
 			int res = pst.executeUpdate();
@@ -64,17 +64,17 @@ public class LivroDaoImp implements IDAO{
 
 	public String update(Object obj) {
 		Livro l = (Livro) obj;
-		String sql = "update livros set título=?, autor=?, preco_custo=?, preco_venda=?, estoque_minimo=?, qtd_estoque=?,"
+		String sql = "update livros set titulo=?, autor=?, precoCusto=?, precoVenda=?, estoqueMinimo=?, qtdEstoque=?,"
 				+ "codigo_prateleira=?, cnpj_fornecedor=? where isbn=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, l.getTítulo());
+			pst.setString(1, l.getTitulo());
 			pst.setString(2, l.getAutor());
-			pst.setFloat(3, l.getPreco_custo());
-			pst.setFloat(4, l.getPreco_venda());
-			pst.setInt(5, l.getEstoque_minimo());
-			pst.setInt(6, l.getQtd_estoque());
+			pst.setFloat(3, l.getPrecoCusto());
+			pst.setFloat(4, l.getPrecoVenda());
+			pst.setInt(5, l.getEstoqueMinimo());
+			pst.setInt(6, l.getQtdEstoque());
 			pst.setInt(7, l.getPrateleira().getCodigo_prateleira());
 			pst.setString(8, l.getFornecedor().getCnpj());
 			pst.setString(9, l.getIsbn());
@@ -102,12 +102,12 @@ public class LivroDaoImp implements IDAO{
 				while (rs.next()) {
 					Livro l = new Livro();
 					l.setIsbn(rs.getString(1));
-					l.setTítulo(rs.getString(2));
+					l.setTitulo(rs.getString(2));
 					l.setAutor(rs.getString(3));
-					l.setPreco_custo(rs.getFloat(4));
-					l.setPreco_venda(rs.getFloat(5));
-					l.setEstoque_minimo(rs.getInt(6));
-					l.setQtd_estoque(rs.getInt(7));
+					l.setPrecoCusto(rs.getFloat(4));
+					l.setPrecoVenda(rs.getFloat(5));
+					l.setEstoqueMinimo(rs.getInt(6));
+					l.setQtdEstoque(rs.getInt(7));
 					Prateleira p = new Prateleira();
 					p.setCodigo_prateleira(rs.getInt(8));
 					l.setPrateleira(p);

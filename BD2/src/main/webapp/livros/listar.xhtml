@@ -1,0 +1,91 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title></title>
+</h:head>
+<h:body>
+
+	
+	<h:form id="form">
+		<p:dataView
+		var="livro" value="#{livrosDataGridView.livros}"
+		paginator="true" rows="10" rowsPerPageTemplate="5,10,15,20"
+		paginatorTemplate= "{CurrentPageReport} {FirstPageLink} {PreviousPageLink}
+							{PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+		gridIcon="fa fa-th-large" listIcon="fa fa-bars">
+		
+			<p:dataViewGridItem>
+	            <p:panel header="#{livro.isbn}" style="text-align:center">
+	                <h:panelGrid columns="1" style="width:100%">
+	                    <h:outputText value="#{livro.brand}" />
+	 
+	                    <p:commandLink update=":form:carDetail"
+	                    oncomplete="PF('bookDialog').show()" title="View Detail">
+	                        <h:outputText styleClass="ui-icon ui-icon-search"
+	                        	style="margin:0 auto;" />
+	                        <f:setPropertyActionListener value="#{livro}"
+	                        	target="#{livrosDataGridView.livro}" />
+	                    </p:commandLink>
+	                </h:panelGrid>
+	            </p:panel>
+	        </p:dataViewGridItem>
+	        
+	        <p:dataViewListItem>
+	            <h:panelGrid columns="3" style="width:100%" columnClasses="logo,detail">
+	                <p:outputPanel>
+	                    <h:panelGrid columns="2" cellpadding="5">
+	                        <h:outputText value="Título:" />
+	                        <h:outputText value="#{livro.titulo}" style="font-weight: bold"/>
+	                        <h:outputText value="Autor:" />
+	                        <h:outputText value="#{livro.autor}" style="font-weight: bold"/>
+	                        <h:outputText value="ISBN:" />
+	                        <h:outputText value="#{livro.isbn}" style="font-weight: bold"/>
+	                        <h:outputText value="Preço:" />
+	                        <h:outputText value="#{livro.preco_venda}" style="font-weight: bold"/>
+	                    </h:panelGrid>
+	                </p:outputPanel>
+	 
+	                <p:commandLink update=":form:carDetail" oncomplete="PF('bookDialog').show()" title="View Detail">
+	                    <h:outputText styleClass="ui-icon ui-icon-search" style="margin:0 auto;" />
+	                    <f:setPropertyActionListener value="#{livro}" target="#{livrosDataGridView.livroSelecionado}" />
+	                </p:commandLink>
+	            </h:panelGrid>
+        	</p:dataViewListItem>
+		</p:dataView>
+		
+		<p:dialog 	header="Detalhes do Livro" widgetVar="bookDialog"
+					modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+	        <p:outputPanel id="carDetail" style="text-align:center;">
+	            <p:panelGrid  columns="2" rendered="#{not empty dataGridView.selectedCar}" columnClasses="label,value">
+	                <f:facet name="header">
+	                    <p:graphicImage name="demo/images/car/#{dataGridView.selectedCar.brand}-big.gif"/> 
+	                </f:facet>
+	 
+	                <h:outputText value="Id:" />
+	                <h:outputText value="#{dataGridView.selectedCar.id}" />
+	 
+	                <h:outputText value="Year" />
+	                <h:outputText value="#{dataGridView.selectedCar.year}" />
+	 
+	                <h:outputText value="Color:" />
+	                <h:outputText value="#{dataGridView.selectedCar.color}"/>
+	 
+	                <h:outputText value="Price" />
+	                <h:outputText value="$#{dataGridView.selectedCar.price}" />
+	            </p:panelGrid>
+	        </p:outputPanel>
+	    </p:dialog>
+	</h:form>
+	<style type="text/css">         
+	    /*demo*/
+	    .ui-dataview-list .ui-dataview-row {border-bottom: 1px solid #A8A8A8;padding: 25px 10px;}
+	    .logo {width: 5%;}
+	    .detail {width: 85%;padding-left: 25px;}
+	</style>
+</h:body>
+</html>

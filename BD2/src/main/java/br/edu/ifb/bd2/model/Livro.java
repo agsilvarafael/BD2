@@ -1,13 +1,15 @@
 package br.edu.ifb.bd2.model;
 
-public class Livro {
+import java.io.Serializable;
+
+public class Livro implements Serializable{
 	private String isbn;
-	private String título;
+	private String titulo;
 	private String autor;
-	private Float preco_custo;
-	private Float preco_venda;
-	private Integer estoque_minimo;
-	private Integer qtd_estoque;
+	private Float precoCusto;
+	private Float precoVenda;
+	private Integer estoqueMinimo;
+	private Integer qtdEstoque;
 	private Fornecedor fornecedor;
 	private Prateleira prateleira;
 	
@@ -17,11 +19,11 @@ public class Livro {
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
-	public String getTítulo() {
-		return título;
+	public String getTitulo() {
+		return titulo;
 	}
-	public void setTítulo(String título) {
-		this.título = título;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 	public String getAutor() {
 		return autor;
@@ -29,29 +31,29 @@ public class Livro {
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
-	public Float getPreco_custo() {
-		return preco_custo;
+	public Float getPrecoCusto() {
+		return precoCusto;
 	}
-	public void setPreco_custo(Float preco_custo) {
-		this.preco_custo = preco_custo;
+	public void setPrecoCusto(Float precoCusto) {
+		this.precoCusto = precoCusto;
 	}
-	public Float getPreco_venda() {
-		return preco_venda;
+	public Float getPrecoVenda() {
+		return precoVenda;
 	}
-	public void setPreco_venda(Float preco_venda) {
-		this.preco_venda = preco_venda;
+	public void setPrecoVenda(Float precoVenda) {
+		this.precoVenda = precoVenda;
 	}
-	public Integer getEstoque_minimo() {
-		return estoque_minimo;
+	public Integer getEstoqueMinimo() {
+		return estoqueMinimo;
 	}
-	public void setEstoque_minimo(Integer estoque_minimo) {
-		this.estoque_minimo = estoque_minimo;
+	public void setEstoqueMinimo(Integer estoqueMinimo) {
+		this.estoqueMinimo = estoqueMinimo;
 	}
-	public Integer getQtd_estoque() {
-		return qtd_estoque;
+	public Integer getQtdEstoque() {
+		return qtdEstoque;
 	}
-	public void setQtd_estoque(Integer qtd_estoque) {
-		this.qtd_estoque = qtd_estoque;
+	public void setQtdEstoque(Integer qtdEstoque) {
+		this.qtdEstoque = qtdEstoque;
 	}
 	public Fornecedor getFornecedor() {
 		return fornecedor;
