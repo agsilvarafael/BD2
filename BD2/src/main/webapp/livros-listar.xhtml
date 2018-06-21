@@ -6,31 +6,121 @@ xmlns:h="http://java.sun.com/jsf/html"
 xmlns:f="http://java.sun.com/jsf/core"
 xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title></title>
+	<title>Cadastrar livro</title>
 </h:head>
 <h:body>
 
 	<!--DataTable - Edit + ContextMenu-->
 
-	<p:dataTable id="cars1" var="car" value="#{dtEditView.cars1}" editable="true" style="margin-bottom:20px">
+	<p:dataTable id="livros1" var="livro" value="#{livroControle.livros}" editable="true" style="margin-bottom:20px">
 		<f:facet name="header">
 			Listagem de livros
 		</f:facet>
-		<p:ajax event="rowEdit" listener="#{dtEditView.onRowEdit}" update=":form:msgs" />
-		<p:ajax event="rowEditCancel" listener="#{dtEditView.onRowCancel}" update=":form:msgs" />
+		<p:ajax event="rowEdit" listener="#{livroControle.update}" update=":form:msgs" />
+		<p:ajax event="rowEditCancel" listener="#{livroControle.dontUpdate}" update=":form:msgs" />
 
-		<p:column headerText="">
+		<p:outputLabel value="ISBN" for="isbn" />
+		<p:outputLabel value="#{livro.isbn}" id="isbn"/>
+
+		<p:column headerText="Título">
+			<p:cellEditor>
+				<f:facet name="output">
+					<h:outputText value="#{livro.}" />
+				</f:facet>
+				<f:facet name="input">
+					<p:inputText value="#{livro.titulo}" required="true" style="width:100%;" style="width:100%" />
+				</f:facet>
+			</p:cellEditor>
 		</p:column>
 
-		<p:column headerText="">
+		<p:column headerText="Autor">
+			<p:cellEditor>
+				<f:facet name="output">
+					<h:outputText value="#{livro.}" />
+				</f:facet>
+				<f:facet name="input">
+					<p:inputText value="#{livro.autor}" required="true" style="width:100%" />
+				</f:facet>
+			</p:cellEditor>
 		</p:column>
 
-		<p:column headerText="">
+		<p:column headerText="Preco Custo">
+			<p:cellEditor>
+				<f:facet name="output">
+					<h:outputText value="#{livro.}" />
+				</f:facet>
+				<f:facet name="input">
+					<p:inputNumber value="#{livro.precoCusto}" symbol="R$ "
+						required="true" symbolPosition="p"
+						decimalSeparator="." thousandSeparator=","
+						minValue="0.0" style="width:100%" />
+				</f:facet>
+			</p:cellEditor>
 		</p:column>
 
-		<p:column headerText="">
+		<p:column headerText="Preco Venda">
+			<p:cellEditor>
+				<f:facet name="output">
+					<h:outputText value="#{livro.}" />
+				</f:facet>
+				<f:facet name="input">
+					<p:inputNumber value="#{livro.precoVenda}" symbol="R$ "
+						required="true" symbolPosition="p"
+						decimalSeparator="." thousandSeparator=","
+						 minValue="0.0" style="width:100%" />
+				</f:facet>
+			</p:cellEditor>
 		</p:column>
 
+		<p:column headerText="Estoque Mín">
+			<p:cellEditor>
+				<f:facet name="output">
+					<h:outputText value="#{livro.estoqueMinimo}" />
+				</f:facet>
+				<f:facet name="input">
+					<p:inputMask value="#{livro.estoqueMinimo}" mask="9?99999" required="true" style="width:100%" />
+				</f:facet>
+			</p:cellEditor>
+		</p:column>
+
+		<p:column headerText="Qtd Estoque">
+			<p:cellEditor>
+				<f:facet name="output">
+					<h:outputText value="#{livro.}" />
+				</f:facet>
+				<f:facet name="input">
+					<p:inputMask value="#{livro.qtdEstoque}" mask="9?99999" required="true" style="width:100%"/>
+				</f:facet>
+			</p:cellEditor>
+		</p:column>
+
+		<p:column headerText="Fornecedor">
+			<p:cellEditor>
+				<f:facet name="output">
+					<h:outputText value="#{livro.}" />
+				</f:facet>
+				<f:facet name="input">
+					<p:selectOneMenu value="#{livro.fornecedorCNPJ}" required="true" style="width:100%">
+						<f:selectItems value="#{livroControle.fornecedores}" var="fornec" itemLabel="#{fornec}" itemValue="#{fornec}" />
+					</p:selectOneMenu>
+				</f:facet>
+			</p:cellEditor>
+		</p:column>
+
+		<p:column headerText="Prateleira">
+			<p:cellEditor>
+				<f:facet name="output">
+					<h:outputText value="#{livro.}" />
+				</f:facet>
+				<f:facet name="input">
+					<p:selectOneMenu value="#{livro.prateleiraCodigo}" required="true" style="width:100%">
+						<f:selectItems value="#{livroControle.prateleiras}" var="prat" itemLabel="#{prat}" itemValue="#{prat}"/>
+					</p:selectOneMenu>
+				</f:facet>
+			</p:cellEditor>
+		</p:column>
+
+		<!--COLUNA COM O BOTAO DE EDICAO-->
 		<p:column style="width:32px">
 			<p:rowEditor />
 		</p:column>

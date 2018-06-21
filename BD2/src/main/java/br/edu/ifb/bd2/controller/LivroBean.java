@@ -1,18 +1,26 @@
 package br.edu.ifb.bd2.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
+
+import org.primefaces.event.RowEditEvent;
 
 import br.edu.ifb.bd2.model.Fornecedor;
 import br.edu.ifb.bd2.model.Livro;
 import br.edu.ifb.bd2.model.Prateleira;
+import br.edu.ifb.bd2.persistence.IDAO;
+import br.edu.ifb.bd2.persistence.LivroDaoImp;
 
 @ManagedBean(name="livroControle", eager=true)
 public class LivroBean {
 
+	private List<Livro> livros;
 	private String isbn;
 	private String titulo;
 	private String autor;
@@ -23,7 +31,7 @@ public class LivroBean {
 	private String fornecedorCNPJ;
 	private Integer prateleiraCodigo;
 	private Map<String, String> fornecedores = new HashMap<String, String>();//Nome, CNPJ
-	private Map<String, Integer> prateleiras = new HashMap<String, Integer>();//Local, CÃ³digo
+	private Map<String, Integer> prateleiras = new HashMap<String, Integer>();//Local, Codigo
 	
 	@PostConstruct
 	public void init() {
@@ -47,6 +55,19 @@ public class LivroBean {
 		l.setPrateleira(p);
 		limpar();
 	}
+
+	public void update(RowEditEvent event) {
+		IDAO dao = new LivroDaoImp();
+		FacesMessage msg = new FacesMessage("Resultado de editar livro", dao.update(event.getObject()));
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+	
+	public void dontUpdate(RowEditEvent event) {
+		FacesMessage msg = new FacesMessage("Edição cancelada para",
+				"ISBN "+((Livro)event.getObject()).getIsbn()+"\n"+
+				((Livro)event.getObject()).getTitulo());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
 	
 	private void limpar() {
 		isbn = "";
@@ -59,85 +80,93 @@ public class LivroBean {
 		fornecedorCNPJ = "";
 		prateleiraCodigo = 0;
 	}
+
+	public String getAutor() {
+		return autor;
+	}
+	
+	public Integer getEstoqueMinimo() {
+		return estoqueMinimo;
+	}
+	
+	public String getFornecedorCNPJ() {
+		return fornecedorCNPJ;
+	}
+	
+	public Map<String, String> getFornecedores() {
+		return fornecedores;
+	}
 	
 	public String getIsbn() {
 		return isbn;
 	}
 
-	public void setIsbn(String isbn) {
-		this.isbn = isbn;
-	}
-
-	public String getTitulo() {
-		return titulo;
-	}
-
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
-	}
-
-	public String getAutor() {
-		return autor;
-	}
-
-	public void setAutor(String autor) {
-		this.autor = autor;
-	}
-
-	public Float getPrecoCusto() {
-		return precoCusto;
-	}
-
-	public void setPrecoCusto(Float precoCusto) {
-		this.precoCusto = precoCusto;
-	}
-
-	public Float getPrecoVenda() {
-		return precoVenda;
-	}
-
-	public void setPrecoVenda(Float precoVenda) {
-		this.precoVenda = precoVenda;
-	}
-
-	public Integer getEstoqueMinimo() {
-		return estoqueMinimo;
-	}
-
-	public void setEstoqueMinimo(Integer estoqueMinimo) {
-		this.estoqueMinimo = estoqueMinimo;
-	}
-
-	public Integer getQtdEstoque() {
-		return qtdEstoque;
-	}
-
-	public void setQtdEstoque(Integer qtdEstoque) {
-		this.qtdEstoque = qtdEstoque;
-	}
-
-	public String getFornecedorCNPJ() {
-		return fornecedorCNPJ;
-	}
-
-	public void setFornecedorCNPJ(String fornecedorCNPJ) {
-		this.fornecedorCNPJ = fornecedorCNPJ;
+	public List<Livro> getLivros() {
+		return livros;
 	}
 
 	public Integer getPrateleiraCodigo() {
 		return prateleiraCodigo;
 	}
 
+	public Map<String, Integer> getPrateleiras() {
+		return prateleiras;
+	}
+
+	public Float getPrecoCusto() {
+		return precoCusto;
+	}
+
+	public Float getPrecoVenda() {
+		return precoVenda;
+	}
+
+	public Integer getQtdEstoque() {
+		return qtdEstoque;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+	
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+
+	public void setEstoqueMinimo(Integer estoqueMinimo) {
+		this.estoqueMinimo = estoqueMinimo;
+	}
+
+	public void setFornecedorCNPJ(String fornecedorCNPJ) {
+		this.fornecedorCNPJ = fornecedorCNPJ;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+	public void setLivros(List<Livro> livros) {
+		this.livros = livros;
+	}
+
 	public void setPrateleiraCodigo(Integer prateleiraCodigo) {
 		this.prateleiraCodigo = prateleiraCodigo;
 	}
 
-	public Map<String, String> getFornecedores() {
-		return fornecedores;
+	public void setPrecoCusto(Float precoCusto) {
+		this.precoCusto = precoCusto;
 	}
 
-	public Map<String, Integer> getPrateleiras() {
-		return prateleiras;
+	public void setPrecoVenda(Float precoVenda) {
+		this.precoVenda = precoVenda;
+	}
+
+	public void setQtdEstoque(Integer qtdEstoque) {
+		this.qtdEstoque = qtdEstoque;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 	
 }
