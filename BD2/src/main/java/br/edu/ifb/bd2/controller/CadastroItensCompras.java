@@ -29,7 +29,7 @@ public class CadastroItensCompras {
 		
 		i.setQuantidade(Integer.parseInt(JOptionPane.showInputDialog("Digite a quantidade deste livro comprada:")));
 		
-		i.setPrecoVendido(Float.parseFloat(JOptionPane.showInputDialog("Digite o preço de venda deste livro:")));
+		i.setPrecoVendido(Float.parseFloat(JOptionPane.showInputDialog("Digite o preco de venda deste livro:")));
 		
 		ItensComprasDaoImp idao = new ItensComprasDaoImp();
 		

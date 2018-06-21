@@ -21,11 +21,12 @@ public class CadastroCompras {
 		
 		CompraDaoImp cp = new CompraDaoImp();
 		String result = cp.save(c);
+		
 		if(result.equals("Inserido com sucesso.")){
 		
 			int op = JOptionPane.showConfirmDialog(null, result+"\nDeseja adicionar um produto?");
 			while(op==0){
-				op = JOptionPane.showConfirmDialog(null, CadastroItensCompras.adicionarItem(c) + "Deseja adicionar um novo produto na mesma compra?");
+				op = JOptionPane.showConfirmDialog(null, CadastroItensCompras.adicionarItem(c) + "\nDeseja adicionar um novo produto na mesma compra?");
 			}
 		}
 		

@@ -22,8 +22,8 @@ public class LivroCadastroBean {
 	private Integer qtdEstoque;
 	private String fornecedorCNPJ;
 	private Integer prateleiraCodigo;
-	private Map<String, String> fornecedores = new HashMap<String, String>();
-	private Map<String, Integer> prateleiras = new HashMap<String, Integer>();
+	private Map<String, String> fornecedores = new HashMap<String, String>();//Nome, CNPJ
+	private Map<String, Integer> prateleiras = new HashMap<String, Integer>();//Local, Código
 	
 	@PostConstruct
 	public void init() {

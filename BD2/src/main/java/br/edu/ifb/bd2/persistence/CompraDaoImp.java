@@ -46,7 +46,7 @@ public class CompraDaoImp implements ICompraDAO{
 			pst.setInt(1, c.getCodigo());
 			int res = pst.executeUpdate();
 			if (res > 0) {
-				return "Excluído com sucesso.";
+				return "Excluido com sucesso.";
 			} else {
 				return "Erro ao excluir.";
 			}
