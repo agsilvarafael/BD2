@@ -14,24 +14,23 @@ public class EnderecoDaoImp implements IDAO{
 
 	public String save(Object obj) {
 		Endereco e = (Endereco) obj;
-		String sql = "insert into enderecos values(?,?,?,?,?,?)";
+		String sql = "insert into enderecos values(?,?,?,?,?)";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setInt(1, e.getIdEndereco());
-			pst.setString(2, e.getCep());
-			pst.setString(3, e.getBairro());
-			pst.setString(4, e.getLogradouro ());
-			pst.setString(5, e.getNumero());
-			pst.setString(6, e.getComplemento());
+			pst.setString(1, e.getCep());
+			pst.setString(2, e.getBairro());
+			pst.setString(3, e.getLogradouro ());
+			pst.setString(4, e.getNumero());
+			pst.setString(5, e.getComplemento());
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Inserido com sucesso.";
 			} else {
 				return "Erro ao inserir.";
 			}
-		} catch (SQLException e) {
-			return e.getMessage();
+		} catch (SQLException ex) {
+			return ex.getMessage();
 		} finally {
 			ConnectionFactory.close(con);
 		}
@@ -50,8 +49,8 @@ public class EnderecoDaoImp implements IDAO{
 			} else {
 				return "Erro ao excluir.";
 			}
-		} catch (SQLException e) {
-			return e.getMessage();
+		} catch (SQLException ex) {
+			return ex.getMessage();
 		} finally {
 			ConnectionFactory.close(con);
 		}
@@ -75,8 +74,8 @@ public class EnderecoDaoImp implements IDAO{
 			} else {
 				return "Erro ao alterar.";
 			}
-		} catch (SQLException e) {
-			return e.getMessage();
+		} catch (SQLException ex) {
+			return ex.getMessage();
 		} finally {
 			ConnectionFactory.close(con);
 		}

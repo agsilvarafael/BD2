@@ -14,14 +14,13 @@ public class PrateleiraDaoImp implements IDAO{
 
 	public String save(Object obj) {
 		Prateleira p = (Prateleira) obj;
-		String sql = "insert into prateleiras values(?,?,?,?)";
+		String sql = "insert into prateleiras values(?,?,?)";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setInt(1, p.getCodigo_prateleira());
-			pst.setString(2, p.getLocalizacao());
-			pst.setString(3, p.getFuncionario().getCpf());
-			pst.setString(4, p.getDescricao());
+			pst.setString(1, p.getLocalizacao());
+			pst.setString(2, p.getFuncionario().getCpf());
+			pst.setString(3, p.getDescricao());
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Inserido com sucesso.";

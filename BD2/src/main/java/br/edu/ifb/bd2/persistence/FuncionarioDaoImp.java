@@ -15,16 +15,15 @@ public class FuncionarioDaoImp implements IDAOView{
 
 	public String save(Object obj) {
 		Funcionario f = (Funcionario) obj;
-		String sql = "insert into funcionarios values(?,?,?,?,?,?)";
+		String sql = "insert into funcionarios values(?,?,?,?,?)";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, f.getCpf());
-			pst.setInt(2, f.getCodigo());
-			pst.setDate(3, f.getData_contratacao());
-			pst.setString(4, f.getSenha());
-			pst.setString(5, f.getCargo());
-			pst.setString(6, f.getSituacao());
+			pst.setDate(2, f.getData_contratacao());
+			pst.setString(3, f.getSenha());
+			pst.setString(4, f.getCargo());
+			pst.setString(5, f.getSituacao());
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Inserido com sucesso.";
@@ -40,11 +39,11 @@ public class FuncionarioDaoImp implements IDAOView{
 
 	public String delete(Object obj) {
 		Funcionario f = (Funcionario) obj;
-		String sql = "delete from funcionarios where cpf=?";
+		String sql = "delete from funcionarios where codigo=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, f.getCpf());
+			pst.setInt(1, f.getCodigo());
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Excluído com sucesso.";
@@ -60,16 +59,15 @@ public class FuncionarioDaoImp implements IDAOView{
 
 	public String update(Object obj) {
 		Funcionario f = (Funcionario) obj;
-		String sql = "update funcionarios set codigo =?, data_contratacao =?, senha=?, cargo=?, situacao=? where cpf=?";
+		String sql = "update funcionarios set data_contratacao =?, senha=?, cargo=?, situacao=? where codigo=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setInt(1, f.getCodigo());
-			pst.setDate(2, f.getData_contratacao());
-			pst.setString(3, f.getSenha());
-			pst.setString(4, f.getCargo());
-			pst.setString(5, f.getSituacao());
-			pst.setString(6, f.getCpf());
+			pst.setDate(1, f.getData_contratacao());
+			pst.setString(2, f.getSenha());
+			pst.setString(3, f.getCargo());
+			pst.setString(4, f.getSituacao());
+			pst.setInt(5, f.getCodigo());
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Alterado com sucesso.";

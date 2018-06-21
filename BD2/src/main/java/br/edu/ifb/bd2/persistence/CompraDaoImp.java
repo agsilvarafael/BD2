@@ -15,15 +15,15 @@ public class CompraDaoImp implements ICompraDAO{
 
 	public String save(Object obj) {
 		Compra c = (Compra) obj;
-		String sql = "insert into compras(codigo, data_compra, situacao, data_cancelamento, cpf) values(?,?,?,?,?)";
+		c.setCodigo(getCodigoASerInserido());
+		String sql = "insert into compras(data_compra, situacao, data_cancelamento, cpf) values(?,?,?,?)";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setInt(1, c.getCodigo());
-			pst.setDate(2, c.getData_compra());
-			pst.setString(3, c.getSituacao());
-			pst.setDate(4, c.getData_cancelamento());
-			pst.setString(5, c.getCliente().getCpf());
+			pst.setDate(1, c.getData_compra());
+			pst.setString(2, c.getSituacao());
+			pst.setDate(3, c.getData_cancelamento());
+			pst.setString(4, c.getCliente().getCpf());
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Inserido com sucesso.";
@@ -169,4 +169,25 @@ public class CompraDaoImp implements ICompraDAO{
 		}
 	}
 
+	private Integer getCodigoASerInserido() {
+		String sql = "select auto_increment from information_schema.tables where table_name = 'compras'";
+		Connection con = ConnectionFactory.getConnection();
+		Integer c = null;
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			if (rs != null) {
+				while (rs.next()) {
+					c = rs.getInt(1);
+				}
+			} else {
+				c = null;
+			}
+		} catch (SQLException e) {
+			c = null;
+		} finally {
+			ConnectionFactory.close(con);
+		}
+		return c;
+	}
 }

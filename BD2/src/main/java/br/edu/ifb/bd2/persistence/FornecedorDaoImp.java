@@ -21,7 +21,7 @@ public class FornecedorDaoImp implements IDAO{
 			pst.setString(1, f.getCnpj());
 			pst.setString(2, f.getNome());
 			pst.setString(3, f.getEmail());
-			pst.setInt(4, f.getEndereco().getId_endereco());
+			pst.setInt(4, f.getEndereco().getIdEndereco());
 			pst.setString(5, f.getTelefone());
 			int res = pst.executeUpdate();
 			if (res > 0) {
@@ -64,7 +64,7 @@ public class FornecedorDaoImp implements IDAO{
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, f.getNome());
 			pst.setString(2, f.getEmail());
-			pst.setInt(3, f.getEndereco().getId_endereco());
+			pst.setInt(3, f.getEndereco().getIdEndereco());
 			pst.setString(4, f.getTelefone());
 			pst.setString(5, f.getCnpj());
 			int res = pst.executeUpdate();
@@ -94,7 +94,7 @@ public class FornecedorDaoImp implements IDAO{
 					f.setNome(rs.getString(2));
 					f.setEmail(rs.getString(3));
 					Endereco e = new Endereco();
-					e.setId_endereco(rs.getInt(4));
+					e.setIdEndereco(rs.getInt(4));
 					f.setEndereco(e);
 					f.setTelefone(rs.getString(5));
 					fornecedores.add(f);
