@@ -4,7 +4,7 @@ public class Fornecedor {
 	private String cnpj;
 	private String nome;
 	private String email;
-	private Endereco id_endereco;
+	private Endereco endereco;
 	private String telefone;
 	
 	public String getCnpj() {
@@ -25,11 +25,11 @@ public class Fornecedor {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Endereco getId_endereco() {
-		return id_endereco;
+	public Endereco getEndereco() {
+		return endereco;
 	}
-	public void setId_endereco(Endereco id_endereco) {
-		this.id_endereco = id_endereco;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 	public String getTelefone() {
 		return telefone;

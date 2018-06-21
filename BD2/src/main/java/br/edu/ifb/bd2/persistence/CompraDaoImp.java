@@ -11,7 +11,7 @@ import br.edu.ifb.bd2.model.Cliente;
 import br.edu.ifb.bd2.model.Compra;
 
 
-public class CompraDaoImp implements IDAO{
+public class CompraDaoImp implements ICompraDAO{
 
 	public String save(Object obj) {
 		Compra c = (Compra) obj;
@@ -109,6 +109,64 @@ public class CompraDaoImp implements IDAO{
 			ConnectionFactory.close(con);
 		}
 		return compras;
+	}
+
+	public String alteraPrecoVenda(String isbn, Float novoPreco) {
+		String sql = "call fc_altera_preco_venda(?,?);";
+		Connection con = ConnectionFactory.getConnection();
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setString(1, isbn);
+			pst.setFloat(1, novoPreco);
+			int res = pst.executeUpdate();
+			if (res > 0) {
+				return "Alterado com sucesso.";
+			} else {
+				return "Erro ao alterar.";
+			}
+		} catch (SQLException e) {
+			return e.getMessage();
+		} finally {
+			ConnectionFactory.close(con);
+		}
+	}
+
+	public String pagarCompra(Integer codigoCompra) {
+		String sql = "call proc_pagar_compra(?);";
+		Connection con = ConnectionFactory.getConnection();
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, codigoCompra);
+			int res = pst.executeUpdate();
+			if (res > 0) {
+				return "Pago com sucesso.";
+			} else {
+				return "Erro ao pagar.";
+			}
+		} catch (SQLException e) {
+			return e.getMessage();
+		} finally {
+			ConnectionFactory.close(con);
+		}
+	}
+
+	public String cancelarCompra(Integer codigoCompra) {
+		String sql = "call proc_cancelar_compra(?);";
+		Connection con = ConnectionFactory.getConnection();
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			pst.setInt(1, codigoCompra);
+			int res = pst.executeUpdate();
+			if (res > 0) {
+				return "Cancelado com sucesso.";
+			} else {
+				return "Erro ao cancelar.";
+			}
+		} catch (SQLException e) {
+			return e.getMessage();
+		} finally {
+			ConnectionFactory.close(con);
+		}
 	}
 
 }
