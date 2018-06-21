@@ -7,22 +7,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.ifb.bd2.model.Cliente;
 import br.edu.ifb.bd2.model.Endereco;
-import br.edu.ifb.bd2.model.Fornecedor;
 
-public class FornecedorDaoImp implements IDAO{
+public class ClienteDaoImp implements IDAOView{
 
 	public String save(Object obj) {
-		Fornecedor f = (Fornecedor) obj;
-		String sql = "insert into fornecedores values(?,?,?,?,?)";
+		Cliente c = (Cliente) obj;
+		String sql = "insert into clientes values(?,?)";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, f.getCnpj());
-			pst.setString(2, f.getNome());
-			pst.setString(3, f.getEmail());
-			pst.setInt(4, f.getEndereco().getIdEndereco());
-			pst.setString(5, f.getTelefone());
+			pst.setString(1, c.getCpf());
+			pst.setDate(2, c.getData_cadastro());
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Inserido com sucesso.";
@@ -37,12 +34,12 @@ public class FornecedorDaoImp implements IDAO{
 	}
 
 	public String delete(Object obj) {
-		Fornecedor f = (Fornecedor) obj;
-		String sql = "delete from fornecedores where cnpj=?";
+		Cliente c = (Cliente) obj;
+		String sql = "delete from clientes where cpf=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, f.getCnpj());
+			pst.setString(1, c.getCpf());
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Excluído com sucesso.";
@@ -57,16 +54,13 @@ public class FornecedorDaoImp implements IDAO{
 	}
 
 	public String update(Object obj) {
-		Fornecedor f = (Fornecedor) obj;
-		String sql = "update fornecedores set nome=?, email=?, id_endereco =?, telefone =?, where cnpj=?";
+		Cliente c = (Cliente) obj;
+		String sql = "update clientes set data_cadastro=? where cpf=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, f.getNome());
-			pst.setString(2, f.getEmail());
-			pst.setInt(3, f.getEndereco().getIdEndereco());
-			pst.setString(4, f.getTelefone());
-			pst.setString(5, f.getCnpj());
+			pst.setDate(1, c.getData_cadastro());
+			pst.setString(2, c.getCpf());
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Alterado com sucesso.";
@@ -81,32 +75,62 @@ public class FornecedorDaoImp implements IDAO{
 	}
 
 	public List<Object> list() {
-		String sql = "select * from fornecedores";
-		List<Object> fornecedores = new ArrayList<Object>();
+		String sql = "select * from clientes";
+		List<Object> clientes = new ArrayList<Object>();
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			if (rs != null) {
 				while (rs.next()) {
-					Fornecedor f = new Fornecedor();
-					f.setCnpj(rs.getString(1));
-					f.setNome(rs.getString(2));
-					f.setEmail(rs.getString(3));
-					Endereco e = new Endereco();
-					e.setIdEndereco(rs.getInt(4));
-					f.setEndereco(e);
-					f.setTelefone(rs.getString(5));
-					fornecedores.add(f);
+					Cliente c = new Cliente();
+					c.setCpf(rs.getString(1));
+					c.setData_cadastro(rs.getDate(2));
+					clientes.add(c);
 				}
 			} else {
-				fornecedores = null;
+				clientes = null;
 			}
 		} catch (SQLException e) {
-			fornecedores = null;
+			clientes = null;
 		} finally {
 			ConnectionFactory.close(con);
 		}
-		return fornecedores;
+		return clientes;
+	}
+
+	public List<Object> getView() {
+		String sql = "select * from view_dados_cliente";
+		List<Object> clientes = new ArrayList<Object>();
+		Connection con = ConnectionFactory.getConnection();
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			if (rs != null) {
+				while (rs.next()) {
+					Cliente c = new Cliente();
+					c.setCpf(rs.getString(1));
+					c.setNome(rs.getString(2));
+					c.setTelefone(rs.getString(3));
+					c.setEmail(rs.getString(4));
+					Endereco e = new Endereco();
+					e.setCep(rs.getString(5));
+					e.setLogradouro(rs.getString(6));
+					e.setNumero(rs.getString(7));
+					e.setBairro(rs.getString(8));
+					e.setComplemento(rs.getString(9));
+					c.setEndereco(e);
+					c.setData_cadastro(rs.getDate(10));
+					clientes.add(c);
+				}
+			} else {
+				clientes = null;
+			}
+		} catch (SQLException e) {
+			clientes = null;
+		} finally {
+			ConnectionFactory.close(con);
+		}
+		return clientes;
 	}
 }

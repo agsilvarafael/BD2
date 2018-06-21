@@ -10,7 +10,7 @@ public class Funcionario extends Pessoa {
 	private String cargo;
 	private String situacao;
 	private List<Frequencia> frequencias;
-	private List<Faltas_justificadas> faltas_justificadas;
+	private List<FaltasJustificadas> faltas_justificadas;
 	private List<Prateleira> prateleiras;
 	
 	public Integer getCodigo() {
@@ -49,10 +49,10 @@ public class Funcionario extends Pessoa {
 	public void setFrequencias(List<Frequencia> frequencias) {
 		this.frequencias = frequencias;
 	}
-	public List<Faltas_justificadas> getFaltas_justificadas() {
+	public List<FaltasJustificadas> getFaltas_justificadas() {
 		return faltas_justificadas;
 	}
-	public void setFaltas_justificadas(List<Faltas_justificadas> faltas_justificadas) {
+	public void setFaltas_justificadas(List<FaltasJustificadas> faltas_justificadas) {
 		this.faltas_justificadas = faltas_justificadas;
 	}
 	public List<Prateleira> getPrateleiras() {

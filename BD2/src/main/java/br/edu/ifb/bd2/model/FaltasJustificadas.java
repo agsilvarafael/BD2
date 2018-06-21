@@ -2,7 +2,7 @@ package br.edu.ifb.bd2.model;
 
 import java.sql.Date;
 
-public class Faltas_justificadas {
+public class FaltasJustificadas {
 	private Date data_falta;
 	private String descricao;
 	private Funcionario funcionario;

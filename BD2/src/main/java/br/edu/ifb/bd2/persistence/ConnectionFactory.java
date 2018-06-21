@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 	public static Connection getConnection(){
-		String driver = "com.mysql.jdbc.Driver";
-		String user = "admin";
+		String driver = "com.mysql.cj.jdbc.Driver";
+		String user = "root";
 		String senha = "admin";
-		String url = "jdbc:mysql://localhost/livraria";
+		String url = "jdbc:mysql://localhost:3306/livraria?useTimezone=true&serverTimezone=UTC&useSSL=FALSE";
 		Connection con = null;
 		try{
 			Class.forName(driver);

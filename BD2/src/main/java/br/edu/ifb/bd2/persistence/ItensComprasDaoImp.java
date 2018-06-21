@@ -21,7 +21,7 @@ public class ItensComprasDaoImp implements IDAO{
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setInt(1, i.getCompra().getCodigo());
 			pst.setString(2, i.getLivro().getIsbn());
-			pst.setFloat(3, i.getPreco_vendido());
+			pst.setFloat(3, i.getPrecoVendido());
 			pst.setInt(4, i.getQuantidade());
 			int res = pst.executeUpdate();
 			if (res > 0) {
@@ -63,7 +63,7 @@ public class ItensComprasDaoImp implements IDAO{
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setFloat(1, i.getPreco_vendido());
+			pst.setFloat(1, i.getPrecoVendido());
 			pst.setInt(2, i.getQuantidade());
 			pst.setInt(3, i.getCompra().getCodigo());
 			pst.setString(4, i.getLivro().getIsbn());
@@ -96,7 +96,7 @@ public class ItensComprasDaoImp implements IDAO{
 					Livro l = new Livro();
 					l.setIsbn(rs.getString(2));
 					i.setLivro(l);
-					i.setPreco_vendido(rs.getFloat(3));
+					i.setPrecoVendido(rs.getFloat(3));
 					i.setQuantidade(rs.getInt(4));
 					itensCompras.add(i);
 				}

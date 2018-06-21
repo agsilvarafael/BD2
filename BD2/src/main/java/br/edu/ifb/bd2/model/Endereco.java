@@ -1,18 +1,18 @@
 package br.edu.ifb.bd2.model;
 
 public class Endereco {
-	private Integer id_endereco;
+	private Integer idEndereco;
 	private String cep;
 	private String bairro;
 	private String logradouro;
 	private String numero;
 	private String complemento;
 	
-	public Integer getId_endereco() {
-		return id_endereco;
+	public Integer getIdEndereco() {
+		return idEndereco;
 	}
-	public void setId_endereco(Integer id_endereco) {
-		this.id_endereco = id_endereco;
+	public void setIdEndereco(Integer idEndereco) {
+		this.idEndereco = idEndereco;
 	}
 	public String getCep() {
 		return cep;

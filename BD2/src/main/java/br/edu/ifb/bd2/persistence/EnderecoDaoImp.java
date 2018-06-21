@@ -8,105 +8,106 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.ifb.bd2.model.Endereco;
-import br.edu.ifb.bd2.model.Fornecedor;
 
-public class FornecedorDaoImp implements IDAO{
+
+public class EnderecoDaoImp implements IDAO{
 
 	public String save(Object obj) {
-		Fornecedor f = (Fornecedor) obj;
-		String sql = "insert into fornecedores values(?,?,?,?,?)";
+		Endereco e = (Endereco) obj;
+		String sql = "insert into enderecos values(?,?,?,?,?)";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, f.getCnpj());
-			pst.setString(2, f.getNome());
-			pst.setString(3, f.getEmail());
-			pst.setInt(4, f.getEndereco().getIdEndereco());
-			pst.setString(5, f.getTelefone());
+			pst.setString(1, e.getCep());
+			pst.setString(2, e.getBairro());
+			pst.setString(3, e.getLogradouro ());
+			pst.setString(4, e.getNumero());
+			pst.setString(5, e.getComplemento());
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Inserido com sucesso.";
 			} else {
 				return "Erro ao inserir.";
 			}
-		} catch (SQLException e) {
-			return e.getMessage();
+		} catch (SQLException ex) {
+			return ex.getMessage();
 		} finally {
 			ConnectionFactory.close(con);
 		}
 	}
 
 	public String delete(Object obj) {
-		Fornecedor f = (Fornecedor) obj;
-		String sql = "delete from fornecedores where cnpj=?";
+		Endereco e = (Endereco) obj;
+		String sql = "delete from enderecos where id_endereco=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, f.getCnpj());
+			pst.setInt(1, e.getIdEndereco());
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Excluído com sucesso.";
 			} else {
 				return "Erro ao excluir.";
 			}
-		} catch (SQLException e) {
-			return e.getMessage();
+		} catch (SQLException ex) {
+			return ex.getMessage();
 		} finally {
 			ConnectionFactory.close(con);
 		}
 	}
 
 	public String update(Object obj) {
-		Fornecedor f = (Fornecedor) obj;
-		String sql = "update fornecedores set nome=?, email=?, id_endereco =?, telefone =?, where cnpj=?";
+		Endereco e = (Endereco) obj;
+		String sql = "update enderecos set cep=?, bairro=?, logradouro=?, numero=?, complemento=? where id_endereco=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, f.getNome());
-			pst.setString(2, f.getEmail());
-			pst.setInt(3, f.getEndereco().getIdEndereco());
-			pst.setString(4, f.getTelefone());
-			pst.setString(5, f.getCnpj());
+			pst.setString(1, e.getCep());
+			pst.setString(2, e.getBairro());
+			pst.setString(3, e.getLogradouro ());
+			pst.setString(4, e.getNumero());
+			pst.setString(5, e.getComplemento());
+			pst.setInt(6, e.getIdEndereco());
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Alterado com sucesso.";
 			} else {
 				return "Erro ao alterar.";
 			}
-		} catch (SQLException e) {
-			return e.getMessage();
+		} catch (SQLException ex) {
+			return ex.getMessage();
 		} finally {
 			ConnectionFactory.close(con);
 		}
 	}
 
 	public List<Object> list() {
-		String sql = "select * from fornecedores";
-		List<Object> fornecedores = new ArrayList<Object>();
+		String sql = "select * from enderecos";
+		List<Object> enderecos = new ArrayList<Object>();
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
 			ResultSet rs = pst.executeQuery();
 			if (rs != null) {
 				while (rs.next()) {
-					Fornecedor f = new Fornecedor();
-					f.setCnpj(rs.getString(1));
-					f.setNome(rs.getString(2));
-					f.setEmail(rs.getString(3));
 					Endereco e = new Endereco();
-					e.setIdEndereco(rs.getInt(4));
-					f.setEndereco(e);
-					f.setTelefone(rs.getString(5));
-					fornecedores.add(f);
+					e.setIdEndereco(rs.getInt(1));
+					e.setCep(rs.getString(2));
+					e.setBairro(rs.getString(3));
+					e.setLogradouro(rs.getString(4));
+					e.setNumero(rs.getString(5));
+					e.setComplemento(rs.getString(6));
+					enderecos.add(e);
 				}
 			} else {
-				fornecedores = null;
+				enderecos = null;
 			}
 		} catch (SQLException e) {
-			fornecedores = null;
+			enderecos = null;
 		} finally {
 			ConnectionFactory.close(con);
 		}
-		return fornecedores;
+		return enderecos;
 	}
+
 }

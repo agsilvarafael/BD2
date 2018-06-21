@@ -2,7 +2,7 @@ package br.edu.ifb.bd2.model;
 
 public class ItensCompra {
 	private Livro livro;
-	private Float preco_vendido;
+	private Float precoVendido;
 	private Integer quantidade;
 	private Compra compra;
 	
@@ -12,11 +12,11 @@ public class ItensCompra {
 	public void setLivro(Livro livro) {
 		this.livro = livro;
 	}
-	public Float getPreco_vendido() {
-		return preco_vendido;
+	public Float getPrecoVendido() {
+		return precoVendido;
 	}
-	public void setPreco_vendido(Float preco_vendido) {
-		this.preco_vendido = preco_vendido;
+	public void setPrecoVendido(Float precoVendido) {
+		this.precoVendido = precoVendido;
 	}
 	public Integer getQuantidade() {
 		return quantidade;
