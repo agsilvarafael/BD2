@@ -14,45 +14,45 @@ xmlns:p="http://primefaces.org/ui">
 		<p:panel header="Cadastro" style="margin-bottom:10px;">
 			<h:panelGrid columns="2" cellpadding="5">
 				<p:outputLabel value="ISBN: " for="isbn"/>
-				<p:inputMask value="#{livroCadastro.isbn}" id="isbn" required="true" mask="999-99-999-9999-9"/>
+				<p:inputMask value="#{livroControle.isbn}" id="isbn" required="true" mask="999-99-999-9999-9"/>
 
 				<p:outputLabel value="Título: " for="titulo" />
-				<p:inputText value="#{livroCadastro.titulo}" id="titulo" required="true"/>
+				<p:inputText value="#{livroControle.titulo}" id="titulo" required="true"/>
 
 				<p:outputLabel value="Autor :" for="autor"/>
-				<p:inputText value="#{livroCadastro.autor}" id="autor" required="true"/>
+				<p:inputText value="#{livroControle.autor}" id="autor" required="true"/>
 
 				<p:outputLabel value="Preço de Custo: " for="precoC" />
-				<p:inputNumber id="precoC" value="#{livroCadastro.precoCusto}" symbol="R$ " required="true"
+				<p:inputNumber id="precoC" value="#{livroControle.precoCusto}" symbol="R$ " required="true"
 					symbolPosition="p" decimalSeparator="." thousandSeparator="," minValue="0.0">
 				
 				<p:outputLabel value="Preço de Venda: " for="precoV" />
-				<p:inputNumber id="precoV" value="#{livroCadastro.precoVenda}" symbol="R$ " required="true"
+				<p:inputNumber id="precoV" value="#{livroControle.precoVenda}" symbol="R$ " required="true"
 					symbolPosition="p" decimalSeparator="." thousandSeparator="," minValue="0.0">
 
 				<p:outputLabel value="Estoque Mínimo: " for="estoqueM" />
-				<p:inputNumber id="estoqueM" value="#{livroCadastro.estoqueMinimo}" required="true"
+				<p:inputNumber id="estoqueM" value="#{livroControle.estoqueMinimo}" required="true"
 					thousandSeparator="," minValue="0">
 
 				<p:outputLabel value="Estoque Atual: " for="estoqueA" />
-				<p:inputNumber id="estoqueA" value="#{livroCadastro.qtdEstoque}" required="true"
+				<p:inputNumber id="estoqueA" value="#{livroControle.qtdEstoque}" required="true"
 				
 				thousandSeparator="," minValue="0">
 				<!-- SelectOneMenu -->
 				<p:outputLabel for="fonecedor" value="Fornecedor: " />
-				<p:selectOneMenu id="fonecedor" value="#{livroCadastro.fornecedorCNPJ}" effect="fold" editable="true" required="true">
+				<p:selectOneMenu id="fonecedor" value="#{livroControle.fornecedorCNPJ}" effect="fold" editable="true" required="true">
 					<f:selectItem itemLabel="Fornecedor" itemValue="" />
-					<f:selectItems value="#{livroCadastro.fornecedores}" />
+					<f:selectItems value="#{livroControle.fornecedores}" />
 				</p:selectOneMenu>
 
 				<p:outputLabel for="prateleira" value="Prateleira: " />
-				<p:selectOneMenu id="prateleira" value="#{livroCadastro.prateleiraCodigo}" effect="fold" editable="true">
+				<p:selectOneMenu id="prateleira" value="#{livroControle.prateleiraCodigo}" effect="fold" editable="true">
 					<f:selectItem itemLabel="Prateleira" itemValue="" />
-					<f:selectItems value="#{livroCadastro.prateleiras}" />
+					<f:selectItems value="#{livroControle.prateleiras}" />
 				</p:selectOneMenu>
 
 				<p:commandButton value="Reset" type="reset" />
-				<p:commandButton value="Salvar"  actionListener="#{livroCadastro.add}" update="cadastraLivro"/>
+				<p:commandButton value="Salvar"  actionListener="#{livroControle.add}" update="cadastraLivro"/>
 			</h:panelGrid>
 		</p:panel>
 		</h:form>

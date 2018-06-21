@@ -10,8 +10,8 @@ import br.edu.ifb.bd2.model.Fornecedor;
 import br.edu.ifb.bd2.model.Livro;
 import br.edu.ifb.bd2.model.Prateleira;
 
-@ManagedBean(name="livroCadastro", eager=true)
-public class LivroCadastroBean {
+@ManagedBean(name="livroControle", eager=true)
+public class LivroBean {
 
 	private String isbn;
 	private String titulo;
@@ -45,8 +45,20 @@ public class LivroCadastroBean {
 		l.setQtdEstoque(qtdEstoque);
 		l.setFornecedor(f);
 		l.setPrateleira(p);
+		limpar();
 	}
 	
+	private void limpar() {
+		isbn = "";
+		titulo = "";
+		autor = "";
+		precoCusto = 0f;
+		precoVenda = 0f;
+		estoqueMinimo = 0;
+		qtdEstoque = 0;
+		fornecedorCNPJ = "";
+		prateleiraCodigo = 0;
+	}
 	
 	public String getIsbn() {
 		return isbn;
