@@ -9,10 +9,53 @@ xmlns:p="http://primefaces.org/ui">
 	<title></title>
 </h:head>
 <h:body>
-	
+	<p:panel header="Livros">
+		<h:form id="cadastraLivro">
+		<p:panel header="Cadastro" style="margin-bottom:10px;">
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel value="ISBN: " for="isbn"/>
+				<p:inputMask value="#{livroCadastro.isbn}" id="isbn" required="true" mask="999-99-999-9999-9"/>
 
-	<h:form>
-	
-	</h:form>
+				<p:outputLabel value="Título: " for="titulo" />
+				<p:inputText value="#{livroCadastro.titulo}" id="titulo" required="true"/>
+
+				<p:outputLabel value="Autor :" for="autor"/>
+				<p:inputText value="#{livroCadastro.autor}" id="autor" required="true"/>
+
+				<p:outputLabel value="Preço de Custo: " for="precoC" />
+				<p:inputNumber id="precoC" value="#{livroCadastro.precoCusto}" symbol="R$ " required="true"
+					symbolPosition="p" decimalSeparator="." thousandSeparator="," minValue="0.0">
+				
+				<p:outputLabel value="Preço de Venda: " for="precoV" />
+				<p:inputNumber id="precoV" value="#{livroCadastro.precoVenda}" symbol="R$ " required="true"
+					symbolPosition="p" decimalSeparator="." thousandSeparator="," minValue="0.0">
+
+				<p:outputLabel value="Estoque Mínimo: " for="estoqueM" />
+				<p:inputNumber id="estoqueM" value="#{livroCadastro.estoqueMinimo}" required="true"
+					thousandSeparator="," minValue="0">
+
+				<p:outputLabel value="Estoque Atual: " for="estoqueA" />
+				<p:inputNumber id="estoqueA" value="#{livroCadastro.qtdEstoque}" required="true"
+				
+				thousandSeparator="," minValue="0">
+				<!-- SelectOneMenu -->
+				<p:outputLabel for="fonecedor" value="Fornecedor: " />
+				<p:selectOneMenu id="fonecedor" value="#{livroCadastro.fornecedorCNPJ}" effect="fold" editable="true" required="true">
+					<f:selectItem itemLabel="Fornecedor" itemValue="" />
+					<f:selectItems value="#{livroCadastro.fornecedores}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel for="prateleira" value="Prateleira: " />
+				<p:selectOneMenu id="prateleira" value="#{livroCadastro.prateleiraCodigo}" effect="fold" editable="true">
+					<f:selectItem itemLabel="Prateleira" itemValue="" />
+					<f:selectItems value="#{livroCadastro.prateleiras}" />
+				</p:selectOneMenu>
+
+				<p:commandButton value="Reset" type="reset" />
+				<p:commandButton value="Salvar"  actionListener="#{livroCadastro.add}" update="cadastraLivro"/>
+			</h:panelGrid>
+		</p:panel>
+		</h:form>
+	</p:panel>
 </h:body>
 </html>
