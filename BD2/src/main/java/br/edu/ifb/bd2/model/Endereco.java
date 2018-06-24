@@ -1,12 +1,23 @@
 package br.edu.ifb.bd2.model;
 
-public class Endereco {
+import java.io.Serializable;
+
+public class Endereco  implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer idEndereco;
 	private String cep;
 	private String bairro;
 	private String logradouro;
 	private String numero;
 	private String complemento;
+	
+	@Override
+	public String toString() {
+		return logradouro+" "+numero+" "+bairro+" "+complemento;
+	}
 	
 	public Integer getIdEndereco() {
 		return idEndereco;

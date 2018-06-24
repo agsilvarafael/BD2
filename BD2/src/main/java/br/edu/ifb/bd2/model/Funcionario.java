@@ -4,13 +4,17 @@ import java.sql.Date;
 import java.util.List;
 
 public class Funcionario extends Pessoa {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer codigo;
-	private Date data_contratacao;
+	private Date dataContratacao;
 	private String senha;
 	private String cargo;
 	private String situacao;
 	private List<Frequencia> frequencias;
-	private List<FaltasJustificadas> faltas_justificadas;
+	private List<FaltasJustificadas> faltasJustificadas;
 	private List<Prateleira> prateleiras;
 	
 	public Integer getCodigo() {
@@ -19,11 +23,11 @@ public class Funcionario extends Pessoa {
 	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
-	public Date getData_contratacao() {
-		return data_contratacao;
+	public Date getDataContratacao() {
+		return dataContratacao;
 	}
-	public void setData_contratacao(Date data_contratacao) {
-		this.data_contratacao = data_contratacao;
+	public void setDataContratacao(Date dataContratacao) {
+		this.dataContratacao = dataContratacao;
 	}
 	public String getSenha() {
 		return senha;
@@ -49,11 +53,11 @@ public class Funcionario extends Pessoa {
 	public void setFrequencias(List<Frequencia> frequencias) {
 		this.frequencias = frequencias;
 	}
-	public List<FaltasJustificadas> getFaltas_justificadas() {
-		return faltas_justificadas;
+	public List<FaltasJustificadas> getFaltasJustificadas() {
+		return faltasJustificadas;
 	}
-	public void setFaltas_justificadas(List<FaltasJustificadas> faltas_justificadas) {
-		this.faltas_justificadas = faltas_justificadas;
+	public void setFaltasJustificadas(List<FaltasJustificadas> faltasJustificadas) {
+		this.faltasJustificadas = faltasJustificadas;
 	}
 	public List<Prateleira> getPrateleiras() {
 		return prateleiras;

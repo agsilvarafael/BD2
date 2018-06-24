@@ -20,7 +20,7 @@ public class FuncionarioDaoImp implements IDAOView{
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, f.getCpf());
-			pst.setDate(2, f.getData_contratacao());
+			pst.setDate(2, f.getDataContratacao());
 			pst.setString(3, f.getSenha());
 			pst.setString(4, f.getCargo());
 			pst.setString(5, f.getSituacao());
@@ -59,11 +59,11 @@ public class FuncionarioDaoImp implements IDAOView{
 
 	public String update(Object obj) {
 		Funcionario f = (Funcionario) obj;
-		String sql = "update funcionarios set data_contratacao =?, senha=?, cargo=?, situacao=? where codigo=?";
+		String sql = "update funcionarios set dataContratacao =?, senha=?, cargo=?, situacao=? where codigo=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setDate(1, f.getData_contratacao());
+			pst.setDate(1, f.getDataContratacao());
 			pst.setString(2, f.getSenha());
 			pst.setString(3, f.getCargo());
 			pst.setString(4, f.getSituacao());
@@ -93,7 +93,7 @@ public class FuncionarioDaoImp implements IDAOView{
 					Funcionario f = new Funcionario();
 					f.setCpf(rs.getString(1));
 					f.setCodigo(rs.getInt(2));
-					f.setData_contratacao(rs.getDate(3));
+					f.setDataContratacao(rs.getDate(3));
 					f.setSenha(rs.getString(4));
 					f.setCargo(rs.getString(5));
 					f.setSituacao(rs.getString(6));
@@ -126,7 +126,7 @@ public class FuncionarioDaoImp implements IDAOView{
 					f.setTelefone(rs.getString(4));
 					f.setEmail(rs.getString(5));
 					f.setSituacao(rs.getString(6));
-					f.setData_contratacao(rs.getDate(7));
+					f.setDataContratacao(rs.getDate(7));
 					Endereco e = new Endereco();
 					e.setCep(rs.getString(8));
 					e.setLogradouro(rs.getString(9));

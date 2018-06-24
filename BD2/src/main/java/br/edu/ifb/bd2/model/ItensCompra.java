@@ -1,6 +1,12 @@
 package br.edu.ifb.bd2.model;
 
-public class ItensCompra {
+import java.io.Serializable;
+
+public class ItensCompra implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Livro livro;
 	private Float precoVendido;
 	private Integer quantidade;

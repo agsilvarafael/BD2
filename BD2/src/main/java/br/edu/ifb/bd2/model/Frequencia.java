@@ -1,9 +1,14 @@
 package br.edu.ifb.bd2.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.sql.Time;
 
-public class Frequencia {
+public class Frequencia implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Date data_freq;
 	private Time hora_entrada;
 	private Time hora_saida;

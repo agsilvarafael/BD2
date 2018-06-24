@@ -22,33 +22,33 @@
 
 					<p:outputLabel value="Preço de Custo: " for="precoC" />
 					<p:inputNumber id="precoC" value="#{livroControle.precoCusto}" symbol="R$ " required="true" symbolPosition="p" decimalSeparator="."
-					 thousandSeparator="," minValue="0.0">
+					 thousandSeparator="," minValue="0.0" />
 
-						<p:outputLabel value="Preço de Venda: " for="precoV" />
-						<p:inputNumber id="precoV" value="#{livroControle.precoVenda}" symbol="R$ " required="true" symbolPosition="p" decimalSeparator="."
-						 thousandSeparator="," minValue="0.0">
+					<p:outputLabel value="Preço de Venda: " for="precoV" />
+					<p:inputNumber id="precoV" value="#{livroControle.precoVenda}" symbol="R$ " required="true" symbolPosition="p" decimalSeparator="."
+					 thousandSeparator="," minValue="0.0" />
 
-							<p:outputLabel value="Estoque Mínimo: " for="estoqueM" />
-							<p:inputMask id="estoqueM" value="#{livroControle.estoqueMinimo}" mask="9?99999" required="true" />
+					<p:outputLabel value="Estoque Mínimo: " for="estoqueM" />
+					<p:inputMask id="estoqueM" value="#{livroControle.estoqueMinimo}" mask="9?99999" required="true" />
 
-							<p:outputLabel value="Estoque Atual: " for="estoqueA" />
-							<p:inputMask id="estoqueA" value="#{livroControle.qtdEstoque}" mask="9?99999" required="true" />
+					<p:outputLabel value="Estoque Atual: " for="estoqueA" />
+					<p:inputMask id="estoqueA" value="#{livroControle.qtdEstoque}" mask="9?99999" required="true" />
 
-							<!-- SelectOneMenu -->
-							<p:outputLabel for="fonecedor" value="Fornecedor: " />
-							<p:selectOneMenu id="fonecedor" value="#{livroControle.fornecedorCNPJ}" required="true">
-								<f:selectItem itemLabel="Fornecedor" itemValue="" />
-								<f:selectItems value="#{livroControle.fornecedores}" />
-							</p:selectOneMenu>
+					<!-- SelectOneMenu -->
+					<p:outputLabel for="fonecedor" value="Fornecedor: " />
+					<p:selectOneMenu id="fonecedor" value="#{livroControle.fornecedorCNPJ}" required="true">
+						<f:selectItem itemLabel="Fornecedor" itemValue="" />
+						<f:selectItems value="#{livroControle.fornecedores}" />
+					</p:selectOneMenu>
 
-							<p:outputLabel for="prateleira" value="Prateleira: " />
-							<p:selectOneMenu id="prateleira" value="#{livroControle.prateleiraCodigo}" required="true">
-								<f:selectItem itemLabel="Prateleira" itemValue="" />
-								<f:selectItems value="#{livroControle.prateleiras}" />
-							</p:selectOneMenu>
+					<p:outputLabel for="prateleira" value="Prateleira: " />
+					<p:selectOneMenu id="prateleira" value="#{livroControle.prateleiraCodigo}" required="true">
+						<f:selectItem itemLabel="Prateleira" itemValue="" />
+						<f:selectItems value="#{livroControle.prateleiras}" />
+					</p:selectOneMenu>
 
-							<p:commandButton value="Reset" type="reset" />
-							<p:commandButton value="Salvar" actionListener="#{livroControle.add}" update="cadastraLivro" />
+					<p:commandButton value="Reset" type="reset" />
+					<p:commandButton value="Salvar" actionListener="#{livroControle.add}" update="cadastraLivro" />
 				</h:panelGrid>
 			</p:panel>
 		</h:form>

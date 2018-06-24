@@ -1,13 +1,18 @@
 package br.edu.ifb.bd2.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Pessoa {
+public class Pessoa implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String cpf;
 	private String nome;
 	private String telefone;
 	private String email;
-	private Date data_nascimento;
+	private Date dataNascimento;
 	private Endereco endereco;
 	
 	public String getCpf() {
@@ -34,11 +39,11 @@ public class Pessoa {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Date getData_nascimento() {
-		return data_nascimento;
+	public Date getDataNascimento() {
+		return dataNascimento;
 	}
-	public void setData_nascimento(Date data_nascimento) {
-		this.data_nascimento = data_nascimento;
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 	public Endereco getEndereco() {
 		return endereco;

@@ -3,6 +3,10 @@ package br.edu.ifb.bd2.model;
 import java.io.Serializable;
 
 public class Livro implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String isbn;
 	private String titulo;
 	private String autor;

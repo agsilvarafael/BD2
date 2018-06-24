@@ -1,6 +1,12 @@
 package br.edu.ifb.bd2.model;
 
-public class Fornecedor {
+import java.io.Serializable;
+
+public class Fornecedor implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String cnpj;
 	private String nome;
 	private String email;

@@ -1,9 +1,14 @@
 package br.edu.ifb.bd2.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
-public class Compra {
+public class Compra implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer codigo;
 	private Date data_compra;
 	private String situacao;

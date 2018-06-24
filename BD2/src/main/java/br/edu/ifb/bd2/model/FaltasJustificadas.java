@@ -1,8 +1,13 @@
 package br.edu.ifb.bd2.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class FaltasJustificadas {
+public class FaltasJustificadas implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Date data_falta;
 	private String descricao;
 	private Funcionario funcionario;

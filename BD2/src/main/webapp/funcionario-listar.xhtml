@@ -1,0 +1,151 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Cadastrar funcionario</title>
+</h:head>
+<h:body>
+
+    <!--DataTable - Edit + ContextMenu-->
+
+    <p:dataTable id="funcionario1" var="funcionario" value="#{funcionarioControle.funcionarios}" editable="true" style="margin-bottom:20px">
+        <f:facet name="header">
+            Listagem de Clientes
+        </f:facet>
+        <p:ajax event="rowEdit" listener="#{funcionarioControle.update}" update=":form:msgs" />
+        <p:ajax event="rowEditCancel" listener="#{funcionarioControle.dontUpdate}" update=":form:msgs" />
+
+        <p:column headerText="CPF">
+            <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{funcionario.cpf}" />
+                </f:facet>
+                <f:facet name="input">
+                    <p:inputMask value="#{funcionarioControle.cpf}" required="true" mask="999.999.999-99" />
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+
+        <p:column headerText="Nome">
+            <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{funcionario.nome}" />
+                </f:facet>
+                <f:facet name="input">
+                    <p:inputText id="nome" required="true" value="#{funcionarioControle.nome}" />
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+
+        <p:column headerText="Telefone">
+            <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{funcionario.telefone}" />
+                </f:facet>
+                <f:facet name="input">
+                    <p:inputMask value="#{funcionarioControle.telefone}" id="fone" required="true" mask="(99) 9999-9999?9" />
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+
+        <p:column headerText="E-mail">
+            <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{funcionario.email}" />
+                </f:facet>
+                <f:facet name="input">
+                    <p:inputText id="email" required="true" value="#{funcionarioControle.email}">
+                        <p:keyFilter regEx="/[a-z0-9_\.\-@]/i" />
+                    </p:inputText>
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+
+        <p:column headerText="Nascimento">
+            <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{funcionario.dataNascimento}" />
+                </f:facet>
+                <f:facet name="input">
+                    <p:calendar id="dataNas" value="#{funcionarioControle.telefone}" locale="pt-br" navigator="true" pattern="yyyy-MM-dd" required="true"
+                    />
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+
+        <p:column headerText="ID Endereço">
+            <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{funcionario.endereco.id}" />
+                </f:facet>
+                <f:facet name="input">
+                    <p:inputMask value="#{funcionarioControle.idEndereco}" id="endereco" required="true" mask="9?99999" />
+                </f:facet>
+            </p:cellEditor>
+
+            <p:column headerText="ID Endereço">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{funcionario.endereco.id}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputMask value="#{funcionarioControle.idEndereco}" id="endereco" required="true" mask="9?99999" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Código">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{funcionario.codigo}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputMask value="#{funcionarioControle.codigo}" id="codigo" required="true" mask="9?999" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Cargo">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{funcionario.cargo}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:selectOneMenu id="cargo" value="#{funcionarioControle.cargo}" style="width:125px" required="true">
+                            <f:selectItem itemLabel="Selecione um" itemValue="" />
+                            <f:selectItem itemLabel="Gerente" itemValue="Gerente" />
+                            <f:selectItem itemLabel="Caixa" itemValue="Caixa" />
+                            <f:selectItem itemLabel="Atendente" itemValue="Atendente" />
+                        </p:selectOneMenu>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+
+            <p:column headerText="Situação">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{funcionario.situacao}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:selectOneMenu id="cargo" value="#{funcionarioControle.situacao}" style="width:125px" required="true">
+                            <f:selectItem itemLabel="Selecione um" itemValue="" />
+                            <f:selectItem itemLabel="Gerente" itemValue="Gerente" />
+                            <f:selectItem itemLabel="Caixa" itemValue="Caixa" />
+                            <f:selectItem itemLabel="Atendente" itemValue="Atendente" />
+                        </p:selectOneMenu>
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+        </p:column>
+
+        <!--COLUNA COM O BOTAO DE EDICAO-->
+        <p:column style="width:32px">
+            <p:rowEditor />
+        </p:column>
+    </p:dataTable>
+
+</h:body>
+
+</html>

@@ -19,7 +19,7 @@ public class ClienteDaoImp implements IDAOView{
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, c.getCpf());
-			pst.setDate(2, c.getData_cadastro());
+			pst.setDate(2, c.getDataCadastro());
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Inserido com sucesso.";
@@ -55,11 +55,11 @@ public class ClienteDaoImp implements IDAOView{
 
 	public String update(Object obj) {
 		Cliente c = (Cliente) obj;
-		String sql = "update clientes set data_cadastro=? where cpf=?";
+		String sql = "update clientes set dataCadastro=? where cpf=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setDate(1, c.getData_cadastro());
+			pst.setDate(1, c.getDataCadastro());
 			pst.setString(2, c.getCpf());
 			int res = pst.executeUpdate();
 			if (res > 0) {
@@ -85,7 +85,7 @@ public class ClienteDaoImp implements IDAOView{
 				while (rs.next()) {
 					Cliente c = new Cliente();
 					c.setCpf(rs.getString(1));
-					c.setData_cadastro(rs.getDate(2));
+					c.setDataCadastro(rs.getDate(2));
 					clientes.add(c);
 				}
 			} else {
@@ -100,7 +100,7 @@ public class ClienteDaoImp implements IDAOView{
 	}
 
 	public List<Object> getView() {
-		String sql = "select * from view_dados_cliente";
+		String sql = "select * from view_dadosCliente";
 		List<Object> clientes = new ArrayList<Object>();
 		Connection con = ConnectionFactory.getConnection();
 		try {
@@ -120,7 +120,7 @@ public class ClienteDaoImp implements IDAOView{
 					e.setBairro(rs.getString(8));
 					e.setComplemento(rs.getString(9));
 					c.setEndereco(e);
-					c.setData_cadastro(rs.getDate(10));
+					c.setDataCadastro(rs.getDate(10));
 					clientes.add(c);
 				}
 			} else {

@@ -1,8 +1,13 @@
 package br.edu.ifb.bd2.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Prateleira {
+public class Prateleira implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer codigo_prateleira;
 	private String localizacao;
 	private String descricao;

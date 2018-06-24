@@ -63,7 +63,7 @@ public class LivroBean {
 	}
 	
 	public void dontUpdate(RowEditEvent event) {
-		FacesMessage msg = new FacesMessage("Edição cancelada para",
+		FacesMessage msg = new FacesMessage("Ediï¿½ï¿½o cancelada para",
 				"ISBN "+((Livro)event.getObject()).getIsbn()+"\n"+
 				((Livro)event.getObject()).getTitulo());
         FacesContext.getCurrentInstance().addMessage(null, msg);

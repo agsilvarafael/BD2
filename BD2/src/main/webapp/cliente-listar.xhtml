@@ -1,0 +1,96 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Cadastrar cliente</title>
+</h:head>
+<h:body>
+
+    <!--DataTable - Edit + ContextMenu-->
+
+    <p:dataTable id="cliente1" var="cliente" value="#{clienteControle.clientes}" editable="true" style="margin-bottom:20px">
+        <f:facet name="header">
+            Listagem de Clientes
+        </f:facet>
+        <p:ajax event="rowEdit" listener="#{clienteControle.update}" update=":form:msgs" />
+        <p:ajax event="rowEditCancel" listener="#{clienteControle.dontUpdate}" update=":form:msgs" />
+       
+        <p:column headerText="CPF">
+            <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{cliente.cpf}" />
+                </f:facet>
+                <f:facet name="input">
+                    <p:inputMask value="#{clienteControle.cpf}" required="true" mask="999.999.999-99" />
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+
+        <p:column headerText="Nome">
+            <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{cliente.nome}" />
+                </f:facet>
+                <f:facet name="input">
+                    <p:inputText id="nome" required="true" value="#{clienteControle.nome}" />
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+
+        <p:column headerText="Telefone">
+            <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{cliente.telefone}" />
+                </f:facet>
+                <f:facet name="input">
+                    <p:inputMask value="#{clienteControle.telefone}" id="fone" required="true" mask="(99) 9999-9999?9" />
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+
+        <p:column headerText="E-mail">
+            <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{cliente.email}" />
+                </f:facet>
+                <f:facet name="input">
+						<p:inputText id="email" required="true" value="#{clienteControle.email}">
+							<p:keyFilter regEx="/[a-z0-9_\.\-@]/i" />
+						</p:inputText>
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+
+        <p:column headerText="Nascimento">
+            <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{cliente.dataNascimento}" />
+                </f:facet>
+                <f:facet name="input">
+                    <p:calendar id="dataNas" value="#{clienteControle.telefone}" locale="pt-br" navigator="true" pattern="yyyy-MM-dd" required="true"/>
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+
+        <p:column headerText="ID Endereço">
+            <p:cellEditor>
+                <f:facet name="output">
+                    <h:outputText value="#{cliente.endereco.id}" />
+                </f:facet>
+                <f:facet name="input">
+                    <p:inputMask value="#{clienteControle.idEndereco}" id="endereco" required="true" mask="9?99999" />
+                </f:facet>
+            </p:cellEditor>
+        </p:column>
+
+        <!--COLUNA COM O BOTAO DE EDICAO-->
+        <p:column style="width:32px">
+            <p:rowEditor />
+        </p:column>
+    </p:dataTable>
+
+</h:body>
+
+</html>
