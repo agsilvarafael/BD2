@@ -39,14 +39,14 @@ public class FuncionarioDaoImp implements IDAOView{
 
 	public String delete(Object obj) {
 		Funcionario f = (Funcionario) obj;
-		String sql = "delete from funcionarios where codigo=?";
+		String sql = "delete from funcionarios where cpf=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setInt(1, f.getCodigo());
+			pst.setInt(1, f.getCpf());
 			int res = pst.executeUpdate();
 			if (res > 0) {
-				return "Excluído com sucesso.";
+				return "Excluido com sucesso.";
 			} else {
 				return "Erro ao excluir.";
 			}
@@ -59,7 +59,7 @@ public class FuncionarioDaoImp implements IDAOView{
 
 	public String update(Object obj) {
 		Funcionario f = (Funcionario) obj;
-		String sql = "update funcionarios set dataContratacao =?, senha=?, cargo=?, situacao=? where codigo=?";
+		String sql = "update funcionarios set dataContratacao =?, senha=?, cargo=?, situacao=? where cpf=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
@@ -67,7 +67,7 @@ public class FuncionarioDaoImp implements IDAOView{
 			pst.setString(2, f.getSenha());
 			pst.setString(3, f.getCargo());
 			pst.setString(4, f.getSituacao());
-			pst.setInt(5, f.getCodigo());
+			pst.setInt(5, f.getCpf());
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Alterado com sucesso.";
