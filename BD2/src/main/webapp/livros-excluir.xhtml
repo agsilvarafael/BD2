@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title></title>
+</h:head>
+<h:body>
+
+    <p:panel header="livros">
+        <h:form id="exluirlivros">
+            <p:dataTable id="livros" var="livro1" value="#{livroControle.livros}"
+            rowKey="#{livro1.isbn}" selection="#{livroControle.livro}"
+                selectionMode="single">
+                <f:facet name="header">
+                    Excluir Livros
+                </f:facet>
+                <p:column headerText="ISBN">
+                    <h:outputText value="#{livro1.isbn}" />
+                </p:column>
+                <p:column headerText="Título">
+                    <h:outputText value="#{livro1.titulo}" />
+                </p:column>
+                <p:column headerText="Preco Custo">
+                    <h:outputText value="#{livro1.precoCusto}" />
+                </p:column>
+                <p:column headerText="Preco Venda">
+                    <h:outputText value="#{livro1.precoVenda}" />
+                </p:column>
+                <p:column headerText="Estoque Mínimo">
+                    <h:outputText value="#{livro1.estoqueMinimo}" />
+                </p:column>
+            </p:dataTable>
+
+            <p:contextMenu for="livros">
+                <p:menuitem value="Delete" update="livros" icon="ui-icon-close" actionListener="#{livroControle.delete}" />
+            </p:contextMenu>
+        </h:form>
+    </p:panel>
+
+</h:body>
+
+</html>

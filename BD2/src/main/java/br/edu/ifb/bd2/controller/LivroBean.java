@@ -21,6 +21,7 @@ import br.edu.ifb.bd2.persistence.LivroDaoImp;
 public class LivroBean {
 
 	private List<Livro> livros;
+	private Livro livroSelecionado;
 	private String isbn;
 	private String titulo;
 	private String autor;
@@ -63,12 +64,18 @@ public class LivroBean {
 	}
 	
 	public void dontUpdate(RowEditEvent event) {
-		FacesMessage msg = new FacesMessage("Edi��o cancelada para",
+		FacesMessage msg = new FacesMessage("Edicao cancelada para",
 				"ISBN "+((Livro)event.getObject()).getIsbn()+"\n"+
 				((Livro)event.getObject()).getTitulo());
         FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
-	
+	public void delete(){
+		IDAO dao = new LivroDaoImp();
+		FacesMessage msg = new FacesMessage("Exluir",
+				"ISBN "+((Livro)event.getObject()).getIsbn()+"\n"+
+				((Livro)event.getObject()).getTitulo());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
 	private void limpar() {
 		isbn = "";
 		titulo = "";
@@ -167,6 +174,14 @@ public class LivroBean {
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
+	}
+
+	public void setLivroSelecionado(Livro livroSelecionado){
+		this.livroSelecionado = livroSelecionado;
+	}
+
+	public void getLivroSelecionado(){
+		return livroSelecionado;
 	}
 	
 }
