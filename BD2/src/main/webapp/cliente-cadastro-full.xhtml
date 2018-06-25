@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title></title>
+</h:head>
+<h:body>
+		<p:panel header="Clientes">
+			<h:form id="cadastraCliente">
+				<p:panel header="Cadastro">
+					<h:panelGrid columns="2" cellpadding="5">
+						<p:outputLabel value="CPF: " for="cpf" />
+						<p:inputMask value="#{clienteControle.cpf}" id="cpf" required="true" mask="999.999.999-99" />
+
+						<p:outputLabel value="Nome: " for="nome"/>
+						<p:inputText id="nome" required="true" value="#{clienteControle.nome}" />
+
+						<p:outputLabel value="Telefone: " for="fone" />
+						<p:inputMask value="#{clienteControle.telefone}" id="fone" required="true" mask="(99) 9999-9999?9" />
+						
+						<p:outputLabel value="E-mail: " for="email" />
+						<p:inputText id="email" required="true" value="#{clienteControle.email}">
+							<p:keyFilter regEx="/[a-z0-9_\.\-@]/i" />
+						</p:inputText>
+
+						<p:outputLabel value="Data nascimento: " for="dataNas" />
+						<p:calendar id="dataNas" value="#{clienteControle.telefone}" locale="pt-br" navigator="true" pattern="yyyy-MM-dd" required="true"/>
+
+						<p:outputLabel value="ID Endereço: " for="endereco" />
+						<p:inputMask value="#{clienteControle.idEndereco}" id="endereco" required="true" mask="9?99999" />
+
+						<p:commandButton value="Reset" type="reset" />
+						<p:commandButton value="Salvar" actionListener="#{clienteControle.add}" update="" />
+					</h:panelGrid>
+				</p:panel>
+			</h:form>
+		</p:panel>
+</h:body>
+</html>

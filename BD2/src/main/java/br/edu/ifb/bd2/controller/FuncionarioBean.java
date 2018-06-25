@@ -29,6 +29,11 @@ public class FuncionarioBean {
 	private String senha;
 	private String cargo;
 	private String situacao;
+	private String cep;
+	private String bairro;
+	private String logradouro;
+	private String numero;
+	private String complemento;
 	private List<Funcionario> funcionarios;
 	
 	public void save() {
@@ -46,7 +51,7 @@ public class FuncionarioBean {
 		f.setDataContratacao(dataContratacao);
 		f.setSenha(senha);
 		f.setCargo(cargo);
-		f.setSituacao(situacao);//TODO colocar valor padrão para esse
+		f.setSituacao(situacao);//TODO colocar valor padrï¿½o para esse
 		
 		IDAO dao = new ClienteDaoImp();
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -133,5 +138,35 @@ public class FuncionarioBean {
 
 	public List<Funcionario> getFuncionarios() {
 		return funcionarios;
+	}
+	public String getCep() {
+		return cep;
+	}
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+	public String getBairro() {
+		return bairro;
+	}
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+	public String getLogradouro() {
+		return logradouro;
+	}
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+	public String getNumero() {
+		return numero;
+	}
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+	public String getComplemento() {
+		return complemento;
+	}
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
 	}
 }

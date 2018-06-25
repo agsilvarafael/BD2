@@ -28,8 +28,16 @@
 						<p:outputLabel value="Data nascimento: " for="dataNas" />
 						<p:calendar id="dataNas" value="#{funcionarioControle.dataNascimento}" locale="pt-br" navigator="true" pattern="yyyy-MMM-dd" required="true"/>
 
-						<p:outputLabel value="ID Endereço: " for="endereco" />
-						<p:inputMask value="#{funcionarioControle.idEndereco}" id="endereco" required="true" mask="9?99999" />
+						<p:panel header="Endereço: ">
+							<p:outputLabel value="CEP: " for="cep" />
+							<p:inputText id="cep" required="true" value="#{funcionarioControle.cep}" />
+							<p:outputLabel value="Bairro: " for="bairro" />
+							<p:inputText id="bairro" required="true" value="#{funcionarioControle.bairro}" />
+							<p:outputLabel value="Logradouro: " for="logradouro" />
+							<p:inputText id="logradouro" required="true" value="#{funcionarioControle.logradouro}" />
+							<p:outputLabel value="Numero: " for="numero" />
+							<p:inputText id="numero" required="true" value="#{funcionarioControle.numero}" />
+						</p:panel>
 
 						<p:outputLabel value="Código: " for="codigo" />
 						<p:inputMask value="#{funcionarioControle.codigo}" id="codigo" required="true" mask="9?999" />
