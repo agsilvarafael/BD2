@@ -15,7 +15,7 @@
 						<p:outputLabel value="CPF: " for="cpf" />
 						<p:inputMask value="#{funcionarioControle.cpf}" id="cpf" required="true" mask="999.999.999-99" />
 						<p:outputLabel value="Nome: " for="nome"/>
-						<p:inputText id="nome" required="true" value="#{}" />
+						<p:inputText id="nome" required="true" value="#{clienteControle.save}" />
 
 						<p:outputLabel value="Telefone: " for="fone" />
 						<p:inputMask value="#{funcionarioControle.telefone}" id="fone" required="true" mask="(99) 9999-9999?9" />
@@ -49,7 +49,7 @@
 						<p:password id="senha" value="#{funcionarioControle.senha}" feedback="true" />
 
 						<p:commandButton value="Reset" type="reset" />
-						<p:commandButton value="Salvar" actionListener="#{funcionarioControle.add}" update="" />
+						<p:commandButton value="Salvar" actionListener="#{funcionarioControle.save}" update="" />
 					</h:panelGrid>
 				</p:panel>
 			</h:form>

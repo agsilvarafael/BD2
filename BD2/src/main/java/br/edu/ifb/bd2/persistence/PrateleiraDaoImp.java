@@ -36,14 +36,14 @@ public class PrateleiraDaoImp implements IDAO{
 
 	public String delete(Object obj) {
 		Prateleira p = (Prateleira) obj;
-		String sql = "delete from prateleiras where codigo_prateleira=?";
+		String sql = "delete from prateleiras where codigoPrateleira=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setInt(1, p.getCodigo_prateleira());
+			pst.setInt(1, p.getCodigoPrateleira());
 			int res = pst.executeUpdate();
 			if (res > 0) {
-				return "Excluído com sucesso.";
+				return "Excluï¿½do com sucesso.";
 			} else {
 				return "Erro ao excluir.";
 			}
@@ -56,14 +56,14 @@ public class PrateleiraDaoImp implements IDAO{
 
 	public String update(Object obj) {
 		Prateleira p = (Prateleira) obj;
-		String sql = "update prateleiras set localizacao=?, cpf_funcionario_responsavel =?, descricao =? where codigo_prateleira=?";
+		String sql = "update prateleiras set localizacao=?, cpf_funcionario_responsavel =?, descricao =? where codigoPrateleira=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, p.getLocalizacao());
 			pst.setString(2, p.getFuncionario().getCpf());
 			pst.setString(3, p.getDescricao());
-			pst.setInt(4, p.getCodigo_prateleira());
+			pst.setInt(4, p.getCodigoPrateleira());
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Alterado com sucesso.";
@@ -87,7 +87,7 @@ public class PrateleiraDaoImp implements IDAO{
 			if (rs != null) {
 				while (rs.next()) {
 					Prateleira p = new Prateleira();
-					p.setCodigo_prateleira(rs.getInt(1));
+					p.setCodigoPrateleira(rs.getInt(1));
 					p.setLocalizacao(rs.getString(2));
 					Funcionario f = new Funcionario();
 					f.setCpf(rs.getString(3));

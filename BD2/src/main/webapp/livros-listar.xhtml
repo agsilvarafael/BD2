@@ -6,12 +6,13 @@ xmlns:h="http://java.sun.com/jsf/html"
 xmlns:f="http://java.sun.com/jsf/core"
 xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Cadastrar livro</title>
+	<title>Listar/Editar livro</title>
 </h:head>
 <h:body>
 
 	<!--DataTable - Edit + ContextMenu-->
-
+	<h:form id="form">
+	<p:growl id="msgs" showDetail="true"/>
 	<p:dataTable id="livros1" var="livro" value="#{livroControle.livros}" editable="true" style="margin-bottom:20px">
 		<f:facet name="header">
 			Listagem de livros
@@ -28,7 +29,7 @@ xmlns:p="http://primefaces.org/ui">
 					<h:outputText value="#{livro.titulo}" />
 				</f:facet>
 				<f:facet name="input">
-					<p:inputText value="#{livro.titulo}" required="true" style="width:100%;" style="width:100%" />
+					<p:inputText value="#{livro.titulo}" required="true" style="width:100%;"/>
 				</f:facet>
 			</p:cellEditor>
 		</p:column>
@@ -86,7 +87,7 @@ xmlns:p="http://primefaces.org/ui">
 		<p:column headerText="Qtd Estoque">
 			<p:cellEditor>
 				<f:facet name="output">
-					<h:outputText value="#{livro.}qtdEstoque" />
+					<h:outputText value="#{livro.qtdEstoque}" />
 				</f:facet>
 				<f:facet name="input">
 					<p:inputMask value="#{livro.qtdEstoque}" mask="9?99999" required="true" style="width:100%"/>
@@ -97,10 +98,10 @@ xmlns:p="http://primefaces.org/ui">
 		<p:column headerText="Fornecedor">
 			<p:cellEditor>
 				<f:facet name="output">
-					<h:outputText value="#{livro.fornecedorCNPJ}" />
+					<h:outputText value="#{livro.fornecedor.cnpj}" />
 				</f:facet>
 				<f:facet name="input">
-					<p:selectOneMenu value="#{livro.fornecedorCNPJ}" required="true" style="width:100%">
+					<p:selectOneMenu value="#{livro.fornecedor.cnpj}" required="true" style="width:100%">
 						<f:selectItems value="#{livroControle.fornecedores}" var="fornec" itemLabel="#{fornec}" itemValue="#{fornec}" />
 					</p:selectOneMenu>
 				</f:facet>
@@ -110,10 +111,10 @@ xmlns:p="http://primefaces.org/ui">
 		<p:column headerText="Prateleira">
 			<p:cellEditor>
 				<f:facet name="output">
-					<h:outputText value="#{livro.}" />
+					<h:outputText value="#{livro.prateleira.codigoPrateleira}" />
 				</f:facet>
 				<f:facet name="input">
-					<p:selectOneMenu value="#{livro.prateleiraCodigo}" required="true" style="width:100%">
+					<p:selectOneMenu value="#{livro.prateleira.codigoPrateleira}" required="true" style="width:100%">
 						<f:selectItems value="#{livroControle.prateleiras}" var="prat" itemLabel="#{prat}" itemValue="#{prat}"/>
 					</p:selectOneMenu>
 				</f:facet>
@@ -125,6 +126,6 @@ xmlns:p="http://primefaces.org/ui">
 			<p:rowEditor />
 		</p:column>
 	</p:dataTable>
-
+	</h:form>
 </h:body>
 </html>

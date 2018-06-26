@@ -36,14 +36,15 @@ public class LivroBean {
 	
 	@PostConstruct
 	public void init() {
-		//TODO adicionar os valores nos maps puxando os registros do banco
+		IDAO dao = new LivroDaoImp();
+		livros = (List<Livro>)(List)dao.list();
 	}
 	
 	public void add() {
 		Fornecedor f = new Fornecedor();
 		f.setCnpj(fornecedorCNPJ);
 		Prateleira p = new Prateleira();
-		p.setCodigo_prateleira(prateleiraCodigo);
+		p.setCodigoPrateleira(prateleiraCodigo);
 		Livro l = new Livro();
 		l.setIsbn(isbn);
 		l.setTitulo(titulo);
@@ -72,8 +73,9 @@ public class LivroBean {
 	public void delete(){
 		IDAO dao = new LivroDaoImp();
 		FacesMessage msg = new FacesMessage("Exluir",
-				"ISBN "+((Livro)event.getObject()).getIsbn()+"\n"+
-				((Livro)event.getObject()).getTitulo());
+				"ISBN "+livroSelecionado.getIsbn()+"\n"+
+						livroSelecionado.getTitulo()+"\n"+
+						dao.delete(livroSelecionado));
         FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 	private void limpar() {
@@ -152,10 +154,6 @@ public class LivroBean {
 		this.isbn = isbn;
 	}
 
-	public void setLivros(List<Livro> livros) {
-		this.livros = livros;
-	}
-
 	public void setPrateleiraCodigo(Integer prateleiraCodigo) {
 		this.prateleiraCodigo = prateleiraCodigo;
 	}
@@ -180,8 +178,9 @@ public class LivroBean {
 		this.livroSelecionado = livroSelecionado;
 	}
 
-	public void getLivroSelecionado(){
+	public Livro getLivroSelecionado(){
 		return livroSelecionado;
 	}
+	
 	
 }
