@@ -43,7 +43,7 @@ public class FuncionarioDaoImp implements IDAOView{
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setInt(1, f.getCpf());
+			pst.setString(1, f.getCpf());
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Excluido com sucesso.";
@@ -67,7 +67,7 @@ public class FuncionarioDaoImp implements IDAOView{
 			pst.setString(2, f.getSenha());
 			pst.setString(3, f.getCargo());
 			pst.setString(4, f.getSituacao());
-			pst.setInt(5, f.getCpf());
+			pst.setString(5, f.getCpf());
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Alterado com sucesso.";

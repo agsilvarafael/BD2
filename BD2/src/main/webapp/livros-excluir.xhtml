@@ -9,7 +9,7 @@
     <p:panel header="Livros">
         <h:form id="exluirlivros">
             <p:dataTable id="livros" var="livro1" value="#{livroControle.livros}"
-            rowKey="#{livro1.isbn}" selection="#{livroControle.livro}"
+            rowKey="#{livro1.isbn}" selection="#{livroControle.livroSelecionado}"
                 selectionMode="single">
                 <f:facet name="header">
                     Excluir Livros

@@ -8,7 +8,7 @@ public class Prateleira implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer codigo_prateleira;
+	private Integer codigoPrateleira;
 	private String localizacao;
 	private String descricao;
 	private List<Livro> Livros;
@@ -26,11 +26,11 @@ public class Prateleira implements Serializable {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public Integer getCodigo_prateleira() {
-		return codigo_prateleira;
+	public Integer getCodigoPrateleira() {
+		return codigoPrateleira;
 	}
-	public void setCodigo_prateleira(Integer codigo_prateleira) {
-		this.codigo_prateleira = codigo_prateleira;
+	public void setCodigoPrateleira(Integer codigoPrateleira) {
+		this.codigoPrateleira = codigoPrateleira;
 	}
 	public List<Livro> getLivros() {
 		return Livros;
