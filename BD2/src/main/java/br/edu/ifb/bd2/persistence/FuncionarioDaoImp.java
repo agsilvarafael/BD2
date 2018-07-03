@@ -15,16 +15,29 @@ public class FuncionarioDaoImp implements IDAOView{
 
 	public String save(Object obj) {
 		Funcionario f = (Funcionario) obj;
-		String sql = "insert into funcionarios values(?,?,?,?,?)";
+		String sql0 = "select cpf from pessoas where cpf=?";
+		String sql1 = "insert into funcionarios values(?,?,?,?,?)";
+		String sql2 = "insert into funcionarios values(?,?,?,?,?)";
 		Connection con = ConnectionFactory.getConnection();
 		try {
-			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, f.getCpf());
-			pst.setDate(2, f.getDataContratacao());
-			pst.setString(3, f.getSenha());
-			pst.setString(4, f.getCargo());
-			pst.setString(5, f.getSituacao());
-			int res = pst.executeUpdate();
+			PreparedStatement pst0 = con.prepareStatement(sql0);
+			ResultSet rs = pst0.executeQuery();
+			if(!rs.next()) {//Salva os dados da pessoa caso ela ainda não esteja salva no BD
+				PreparedStatement pst1 = con.prepareStatement(sql2);
+					pst1.setString(1, f.getCpf());
+					pst1.setString(2, f.getNome());
+					pst1.setString(3, f.getTelefone());
+					pst1.setString(4, f.getEmail());
+					pst1.setDate(5, f.getDataNascimento());
+					pst1.setInt(6, f.getEndereco().getIdEndereco());
+			}
+			PreparedStatement pst2 = con.prepareStatement(sql2);
+				pst2.setString(1, f.getCpf());
+				pst2.setDate(2, f.getDataContratacao());
+				pst2.setString(3, f.getSenha());
+				pst2.setString(4, f.getCargo());
+				pst2.setString(5, f.getSituacao());
+			int res = pst2.executeUpdate();
 			if (res > 0) {
 				return "Inserido com sucesso.";
 			} else {
@@ -59,7 +72,7 @@ public class FuncionarioDaoImp implements IDAOView{
 
 	public String update(Object obj) {
 		Funcionario f = (Funcionario) obj;
-		String sql = "update funcionarios set dataContratacao =?, senha=?, cargo=?, situacao=? where cpf=?";
+		String sql = "update funcionarios set dataContratacao=?, senha=?, cargo=?, situacao=? where cpf=?";
 		Connection con = ConnectionFactory.getConnection();
 		try {
 			PreparedStatement pst = con.prepareStatement(sql);

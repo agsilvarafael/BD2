@@ -14,13 +14,26 @@ public class ClienteDaoImp implements IDAOView{
 
 	public String save(Object obj) {
 		Cliente c = (Cliente) obj;
-		String sql = "insert into clientes values(?,?)";
+		String sql0 = "select cpf from pessoas where cpf=?";
+		String sql1 = "insert into funcionarios values(?,?,?,?,?)";
+		String sql2 = "insert into clientes values(?,?)";
 		Connection con = ConnectionFactory.getConnection();
 		try {
-			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, c.getCpf());
-			pst.setDate(2, c.getDataCadastro());
-			int res = pst.executeUpdate();
+			PreparedStatement pst0 = con.prepareStatement(sql0);
+			ResultSet rs = pst0.executeQuery();
+			if(!rs.next()) {//Salva os dados da pessoa caso ela ainda não esteja salva no BD
+				PreparedStatement pst1 = con.prepareStatement(sql2);
+					pst1.setString(1, c.getCpf());
+					pst1.setString(2, c.getNome());
+					pst1.setString(3, c.getTelefone());
+					pst1.setString(4, c.getEmail());
+					pst1.setDate(5, c.getDataNascimento());
+					pst1.setInt(6, c.getEndereco().getIdEndereco());
+			}
+			PreparedStatement pst2 = con.prepareStatement(sql2);
+			pst2.setString(1, c.getCpf());
+			pst2.setDate(2, c.getDataCadastro());
+			int res = pst2.executeUpdate();
 			if (res > 0) {
 				return "Inserido com sucesso.";
 			} else {

@@ -12,6 +12,7 @@ import br.edu.ifb.bd2.model.Endereco;
 
 public class EnderecoDaoImp implements IDAO{
 
+	//Endereços sempre é selecionado de uma lsita, caso não exista é cadastrado e adicionado a ela
 	public String save(Object obj) {
 		Endereco e = (Endereco) obj;
 		String sql = "insert into enderecos values(?,?,?,?,?)";

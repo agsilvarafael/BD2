@@ -1,8 +1,9 @@
 package br.edu.ifb.bd2.controller;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -36,6 +37,12 @@ public class FuncionarioBean {
 	private String complemento;
 	private List<Funcionario> funcionarios;
 	
+	@PostConstruct
+	public void init() {
+		IDAO dao = new FuncionarioDaoImp();
+		funcionarios = (List<Funcionario>)(List)dao.list();
+	}
+	
 	public void save() {
 		Endereco e = new Endereco();
 		e.setIdEndereco(idEndereco);
@@ -46,12 +53,12 @@ public class FuncionarioBean {
 		f.setEmail(email);
 		f.setTelefone(telefone);
 		f.setEndereco(e);
-		f.setDataNascimento(dataNascimento);
+		f.setDataNascimento(new java.sql.Date(dataNascimento.getTime()));
 		f.setCodigo(codigo);
-		f.setDataContratacao(dataContratacao);
+		f.setDataContratacao(new java.sql.Date(dataContratacao.getTime()));
 		f.setSenha(senha);
 		f.setCargo(cargo);
-		f.setSituacao(situacao);//TODO colocar valor padr�o para esse
+		f.setSituacao(situacao);//TODO colocar valor padrao para esse
 		
 		IDAO dao = new ClienteDaoImp();
 		FacesContext context = FacesContext.getCurrentInstance();

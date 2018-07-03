@@ -14,15 +14,16 @@ public class FornecedorDaoImp implements IDAO{
 
 	public String save(Object obj) {
 		Fornecedor f = (Fornecedor) obj;
-		String sql = "insert into fornecedores values(?,?,?,?,?)";
+		String sql2 = "insert into fornecedores values(?,?,?,?,?)";
 		Connection con = ConnectionFactory.getConnection();
 		try {
-			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, f.getCnpj());
-			pst.setString(2, f.getNome());
-			pst.setString(3, f.getEmail());
-			pst.setInt(4, f.getEndereco().getIdEndereco());
-			pst.setString(5, f.getTelefone());
+			PreparedStatement pst = con.prepareStatement(sql2);
+			pst = con.prepareStatement(sql2);
+				pst.setString(1, f.getCnpj());
+				pst.setString(2, f.getNome());
+				pst.setString(3, f.getEmail());
+				pst.setInt(4, f.getEndereco().getIdEndereco());
+				pst.setString(5, f.getTelefone());
 			int res = pst.executeUpdate();
 			if (res > 0) {
 				return "Inserido com sucesso.";

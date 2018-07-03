@@ -9,10 +9,11 @@
 <h:body>
 
     <!--DataTable - Edit + ContextMenu-->
-
+	<h:form id="form">
+	<p:growl id="msgs" showDetail="true"/>
     <p:dataTable id="funcionario1" var="funcionario" value="#{funcionarioControle.funcionarios}" editable="true" style="margin-bottom:20px">
         <f:facet name="header">
-            Listagem de Clientes
+            Listagem de Funcionários
         </f:facet>
         <p:ajax event="rowEdit" listener="#{funcionarioControle.update}" update=":form:msgs" />
         <p:ajax event="rowEditCancel" listener="#{funcionarioControle.dontUpdate}" update=":form:msgs" />
@@ -84,17 +85,7 @@
                     <p:inputMask value="#{funcionarioControle.idEndereco}" id="endereco" required="true" mask="9?99999" />
                 </f:facet>
             </p:cellEditor>
-
-            <p:column headerText="ID Endereço">
-                <p:cellEditor>
-                    <f:facet name="output">
-                        <h:outputText value="#{funcionario.endereco.id}" />
-                    </f:facet>
-                    <f:facet name="input">
-                        <p:inputMask value="#{funcionarioControle.idEndereco}" id="endereco" required="true" mask="9?99999" />
-                    </f:facet>
-                </p:cellEditor>
-            </p:column>
+        </p:column>
 
             <p:column headerText="Código">
                 <p:cellEditor>
@@ -113,7 +104,7 @@
                         <h:outputText value="#{funcionario.cargo}" />
                     </f:facet>
                     <f:facet name="input">
-                        <p:selectOneMenu id="cargo" value="#{funcionarioControle.cargo}" style="width:125px" required="true">
+                        <p:selectOneMenu id="cargo2" value="#{funcionarioControle.cargo}" style="width:125px" required="true">
                             <f:selectItem itemLabel="Selecione um" itemValue="" />
                             <f:selectItem itemLabel="Gerente" itemValue="Gerente" />
                             <f:selectItem itemLabel="Caixa" itemValue="Caixa" />
@@ -129,7 +120,7 @@
                         <h:outputText value="#{funcionario.situacao}" />
                     </f:facet>
                     <f:facet name="input">
-                        <p:selectOneMenu id="cargo" value="#{funcionarioControle.situacao}" style="width:125px" required="true">
+                        <p:selectOneMenu id="situacao" value="#{funcionarioControle.situacao}" style="width:125px" required="true">
                             <f:selectItem itemLabel="Selecione um" itemValue="" />
                             <f:selectItem itemLabel="Gerente" itemValue="Gerente" />
                             <f:selectItem itemLabel="Caixa" itemValue="Caixa" />
@@ -138,14 +129,13 @@
                     </f:facet>
                 </p:cellEditor>
             </p:column>
-        </p:column>
 
         <!--COLUNA COM O BOTAO DE EDICAO-->
         <p:column style="width:32px">
             <p:rowEditor />
         </p:column>
     </p:dataTable>
-
+	</h:form>
 </h:body>
 
 </html>

@@ -101,6 +101,7 @@ xmlns:p="http://primefaces.org/ui">
 					<h:outputText value="#{livro.fornecedor.cnpj}" />
 				</f:facet>
 				<f:facet name="input">
+					<p:inputMask value="#{livroControle.fornecedor.cnpj}" mask="9?99999" required="true" />
 					<p:selectOneMenu value="#{livro.fornecedor.cnpj}" required="true" style="width:100%">
 						<f:selectItems value="#{livroControle.fornecedores}" var="fornec" itemLabel="#{fornec}" itemValue="#{fornec}" />
 					</p:selectOneMenu>

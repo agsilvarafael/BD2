@@ -34,18 +34,12 @@
 					<p:outputLabel value="Estoque Atual: " for="estoqueA" />
 					<p:inputMask id="estoqueA" value="#{livroControle.qtdEstoque}" mask="9?99999" required="true" />
 
-					<!-- SelectOneMenu -->
+					
 					<p:outputLabel for="fonecedor" value="Fornecedor: " />
-					<p:selectOneMenu id="fonecedor" value="#{livroControle.fornecedorCNPJ}" required="true">
-						<f:selectItem itemLabel="Fornecedor" itemValue="" />
-						<f:selectItems value="#{livroControle.fornecedores}" />
-					</p:selectOneMenu>
+					<p:inputMask id="fonecedor" value="#{livroControle.fornecedorCNPJ}" mask="9?99999" required="true" />
 
 					<p:outputLabel for="prateleira" value="Prateleira: " />
-					<p:selectOneMenu id="prateleira" value="#{livroControle.prateleiraCodigo}" required="true">
-						<f:selectItem itemLabel="Prateleira" itemValue="" />
-						<f:selectItems value="#{livroControle.prateleiras}" />
-					</p:selectOneMenu>
+					<p:inputMask id="prateleira" value="#{livroControle.prateleiraCodigo}" mask="9?99999" required="true" />
 
 					<p:commandButton value="Reset" type="reset" />
 					<p:commandButton value="Salvar" actionListener="#{livroControle.add}" update="cadastraLivro" />

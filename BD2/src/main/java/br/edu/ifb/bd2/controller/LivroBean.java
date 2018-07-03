@@ -1,6 +1,5 @@
 package br.edu.ifb.bd2.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,13 +30,27 @@ public class LivroBean {
 	private Integer qtdEstoque;
 	private String fornecedorCNPJ;
 	private Integer prateleiraCodigo;
-	private Map<String, String> fornecedores = new HashMap<String, String>();//Nome, CNPJ
-	private Map<String, Integer> prateleiras = new HashMap<String, Integer>();//Local, Codigo
+	private Map<String, String> fornecedores;//Nome, CNPJ
+	private Map<String, Integer> prateleiras;//Local, Codigo
 	
 	@PostConstruct
 	public void init() {
 		IDAO dao = new LivroDaoImp();
 		livros = (List<Livro>)(List)dao.list();
+//		dao = new FornecedorDaoImp();
+//		Iterator<Fornecedor> it = ((List)dao.list()).iterator();
+//		fornecedores = new HashMap<String, String>();
+//		while (it.hasNext()) {
+//			Fornecedor f = it.next();
+//			fornecedores.put(f.getNome(), f.getCnpj());
+//		}
+//		dao = new PrateleiraDaoImp();
+//		Iterator<Prateleira> it2 = ((List)dao.list()).iterator();
+//		prateleiras = new HashMap<String, Integer>();
+//		while (it2.hasNext()) {
+//			Prateleira p = it2.next();
+//			prateleiras.put(p.getLocalizacao(), p.getCodigoPrateleira());
+//		}
 	}
 	
 	public void add() {
@@ -55,6 +68,8 @@ public class LivroBean {
 		l.setQtdEstoque(qtdEstoque);
 		l.setFornecedor(f);
 		l.setPrateleira(p);
+		IDAO dao = new LivroDaoImp();
+		dao.save(l);
 		limpar();
 	}
 
